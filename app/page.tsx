@@ -2,10 +2,10 @@
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useEffect, useMemo, useState } from "react";
-import { craftables as craftableData } from "@/data/craftables";
-import CraftingSidebar from "@/components/CraftingSidebar";
+import { memories as memoryData } from "@/data/memories";
+import MemorySidebar from "@/components/MemorySidebar";
 import MobileDrawer from "@/components/MobileDrawer";
-import CraftingDetail from "@/components/CraftingDetail";
+import MemoryDetail from "@/components/MemoryDetail";
 import { Language, translations } from "@/data/i18n";
 import Link from "next/link";
 
@@ -13,10 +13,10 @@ export default function Home() {
   // In this iteration the data source is the mock array. Later this can be
   // swapped for a fetch/query without changing anything below.
   const [isMounted, setIsMounted] = useState(false);
-  const craftables = craftableData;
+  const memories = memoryData;
   const [selectedPrincipleId, setSelectedPrincipleId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCraftableId, setSelectedCraftableId] = useState<string | null>(
+  const [selectedMemoryId, setSelectedMemoryId] = useState<string | null>(
     null
   );
   const [language, setLanguage] = useState<Language>("en");
@@ -27,12 +27,12 @@ export default function Home() {
   setIsMounted(true);
 
   const savedLanguage = localStorage.getItem("language") as Language | null;
-  const savedCraftableId = localStorage.getItem("selectedCraftableId");
+  const savedMemoryId = localStorage.getItem("selectedMemoryId");
   const savedSearchQuery = localStorage.getItem("searchQuery");
   const savedPrincipleId = localStorage.getItem("selectedPrincipleId");
 
   if (savedLanguage === "en" || savedLanguage === "zh") setLanguage(savedLanguage);
-  if (savedCraftableId) setSelectedCraftableId(savedCraftableId);
+  if (savedMemoryId) setSelectedMemoryId(savedMemoryId);
   if (savedSearchQuery) setSearchQuery(savedSearchQuery);
   if (savedPrincipleId) setSelectedPrincipleId(savedPrincipleId);
 }, []);
@@ -45,12 +45,12 @@ export default function Home() {
   useEffect(() => {
     if (!isMounted) return;
 
-  if (selectedCraftableId) {
-    localStorage.setItem("selectedCraftableId", selectedCraftableId);
+  if (selectedMemoryId) {
+    localStorage.setItem("selectedMemoryId", selectedMemoryId);
   } else {
-    localStorage.removeItem("selectedCraftableId");
+    localStorage.removeItem("selectedMemoryId");
   }
-}, [selectedCraftableId, isMounted]);
+}, [selectedMemoryId, isMounted]);
 
   useEffect(() => {
   if (!isMounted) return;
@@ -70,27 +70,27 @@ useEffect(() => {
   // Category filtering now happens visually through the sidebar accordion
   // (only the relevant category needs opening), so the only filtering
   // done here is the free-text search.
-  const filteredCraftables = useMemo(() => {
-    return craftables.filter((craftable) => {
+  const filteredMemories = useMemo(() => {
+    return memories.filter((memory) => {
       const matchesSearch = 
-      craftable.displayName[language]
+      memory.displayName[language]
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
       const matchesPrinciple = 
       !selectedPrincipleId ||
-      (craftable.principles ?? []).some(
+      (memory.principles ?? []).some(
     (p) => p.id === selectedPrincipleId
   );
       return matchesSearch && matchesPrinciple;
     });
-  }, [craftables, searchQuery, selectedPrincipleId, language]);
+  }, [memories, searchQuery, selectedPrincipleId, language]);
 
-  const selectedCraftable =
-    craftables.find((craftable) => craftable.id === selectedCraftableId) ?? null;
+  const selectedMemory =
+    memories.find((memory) => memory.id === selectedMemoryId) ?? null;
 
-  function handleSelectCraftable(id: string) {
-    setSelectedCraftableId(id);
-    // On mobile, picking a craftable should close the drawer and reveal
+  function handleSelectMemory(id: string) {
+    setSelectedMemoryId(id);
+    // On mobile, picking a memory should close the drawer and reveal
     // the detail view, which is the primary mobile experience.
     setIsDrawerOpen(false);
   }
@@ -98,9 +98,9 @@ useEffect(() => {
   const sidebarProps = {
     searchQuery,
     onSearchChange: setSearchQuery,
-    craftables: filteredCraftables,
-    selectedCraftableId,
-    onSelectCraftable: handleSelectCraftable,
+    memories: filteredMemories,
+    selectedMemoryId,
+    onSelectMemory: handleSelectMemory,
     selectedPrincipleId,
     onSelectPrinciple: setSelectedPrincipleId,
     language,
@@ -115,12 +115,12 @@ if (!isMounted) {
 >
       {/* Desktop sidebar */}
       <aside className="hidden md:block md:w-[400px] md:flex-shrink-0 border-r border-ink/10">
-        <CraftingSidebar {...sidebarProps} />
+        <MemorySidebar {...sidebarProps} />
       </aside>
 
       {/* Mobile slide-in drawer */}
       <MobileDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} language={language} >
-        <CraftingSidebar {...sidebarProps} />
+        <MemorySidebar {...sidebarProps} />
       </MobileDrawer>
 
       {/* Right / primary detail panel */}
@@ -129,13 +129,13 @@ if (!isMounted) {
           <button
             type="button"
             onClick={() => setIsDrawerOpen(true)}
-            aria-label="Open craftable list"
+            aria-label="Open memory list"
             className="rounded-md border border-ink/20 px-3 py-1 text-sm text-ink/80"
           >
-            ☰ {t.craftables}
+            ☰ {t.memories}
           </button>
           <span className="text-sm text-ink/70">
-            {selectedCraftable ? selectedCraftable.displayName[language] : "Hush House Cookbook"}
+            {selectedMemory ? selectedMemory.displayName[language] : "Hush House Memory"}
           </span>
         </div>
         <div className="flex items-center justify-end gap-3 px-8 pt-4">
@@ -149,7 +149,7 @@ if (!isMounted) {
   </Link>
 </div>
 
-        <CraftingDetail craftable={selectedCraftable} craftables={craftables} language={language} />
+        <MemoryDetail memory={selectedMemory} language={language} />
       </main>
     </div>
   );

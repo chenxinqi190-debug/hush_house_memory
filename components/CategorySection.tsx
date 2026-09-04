@@ -1,11 +1,18 @@
 "use client";
 
 import { Language } from "@/data/i18n";
-import { Craftable } from "@/types/crafting";
+
+interface CategoryItem {
+  id: string;
+  displayName: {
+    en: string;
+    zh: string;
+  };
+}
 
 interface CategorySectionProps {
   label: string;
-  craftables: Craftable[];
+  craftables: CategoryItem[];
   isOpen: boolean;
   onToggle: () => void;
   selectedCraftableId: string | null;
@@ -42,13 +49,13 @@ export default function CategorySection({
         <div className="pb-5 pl-3">
           {craftables.length > 0 ? (
             <ul className="space-y-3">
-              {craftables.map((crfatable) => {
-                const isSelected = crfatable.id === selectedCraftableId;
+              {craftables.map((craftable) => {
+                const isSelected = craftable.id === selectedCraftableId;
                 return (
-                  <li key={crfatable.id}>
+                  <li key={craftable.id}>
                     <button
                       type="button"
-                      onClick={() => onSelectCraftable(crfatable.id)}
+                      onClick={() => onSelectCraftable(craftable.id)}
                       aria-current={isSelected ? "true" : undefined}
                       className={`block w-full text-left text-lg leading-relaxed ${
                         isSelected
@@ -56,7 +63,7 @@ export default function CategorySection({
                           : "text-ink/60 hover:text-ink"
                       }`}
                     >
-                      {crfatable.displayName[language]}
+                      {craftable.displayName[language]}
                     </button>
                   </li>
                 );

@@ -19,8 +19,8 @@ const notoSerifSC = Noto_Serif_SC({
 });
 
 export const metadata: Metadata = {
-  title: "Hush House Craftbook",
-  description: "The librarian's crafting archive.",
+  title: "Hush House Memory",
+  description: "The librarian's memory ledger.",
 };
 
 export default function RootLayout({

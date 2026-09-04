@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import {
-  Craftable,
-  CraftableType,
-  CATEGORY_ORDER,
-} from "@/types/crafting";
+  Memory, MemoryType
+} from "@/types/memory";
 import SearchBar from "./SearchBar";
 import PrincipleFilter from "./PrincipleFilter";
 import CategorySection from "./CategorySection";
@@ -14,20 +12,27 @@ import { Language, translations } from "@/data/i18n";
 interface SidebarProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
-  craftables: Craftable[];
-  selectedCraftableId: string | null;
-  onSelectCraftable: (id: string) => void;
+  memories: Memory[];
+  selectedMemoryId: string | null;
+  onSelectMemory: (id: string) => void;
   selectedPrincipleId: string | null;
   onSelectPrinciple: (id: string | null) => void;
   language: Language;
 }
 
-export default function Sidebar({
+const MEMORY_CATEGORY_ORDER: MemoryType[] = [
+  "weather",
+  "temporary",
+  "persistent",
+  "numen"
+];
+
+export default function MemorySidebar({
   searchQuery,
   onSearchChange,
-  craftables,
-  selectedCraftableId,
-  onSelectCraftable,
+  memories,
+  selectedMemoryId,
+  onSelectMemory,
   selectedPrincipleId,
   onSelectPrinciple,
   language,
@@ -55,15 +60,6 @@ export default function Sidebar({
     });
   }
 
-  const extraCategories = Array.from(
-    new Set(craftables.flatMap((craftable) => craftable.type))
-  ).filter((type) => !CATEGORY_ORDER.includes(type));
-
-  const orderedCategories = [
-    ...CATEGORY_ORDER,
-    ...extraCategories,
-  ];
-
   return (
     <div className="flex h-full flex-col">
       <div className="px-4 pt-6 pb-4 md:pt-10 md:pb-20">
@@ -88,26 +84,25 @@ export default function Sidebar({
       </div>
 
       <nav className="min-h-0 flex-1 overflow-y-auto px-2">
-        {orderedCategories.map((category) => {
-          const categoryCraftables = craftables.filter((craftable) =>
-            craftable.type.includes(category)
-          );
+        {MEMORY_CATEGORY_ORDER.map((category) => {
+          const categoryMemories = memories.filter((memory) => memory.type === category);
 
-          if (categoryCraftables.length === 0) return null;
+          if (categoryMemories.length === 0) return null;
 
           return (
             <CategorySection
               key={category}
               label={t.types[category] ?? category}
-              craftables={categoryCraftables}
+              craftables={categoryMemories}
               isOpen={
                 isFiltering
-                  ? categoryCraftables.length > 0
+                  ? categoryMemories.length > 0
                   : openCategories.has(category)
               }
               onToggle={() => toggleCategory(category)}
-              selectedCraftableId={selectedCraftableId}
-              onSelectCraftable={onSelectCraftable}
+              selectedCraftableId={selectedMemoryId}
+              onSelectCraftable={onSelectMemory
+              }
               language={language}
             />
           );
