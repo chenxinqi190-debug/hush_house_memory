@@ -2377,16 +2377,141 @@ export const books: Book[] = [
   },
   //Nectar Books
  {
-    id: "nectar_4_De Horis book 1",
+    id: "nectar_4_de_horis_book_1",
     displayName: {
       en: "De Horis book 1",
-      zh: "《金雀花王朝之谜》",
+      zh: "《司辰志1》",
     },
     principle: {
-      id: "moth",
-      amount: 21,
+      id: "nectar",
+      amount: 4,
     },
-    language: "deep_mandaic",
-    format: "multitudinous",
+    language: "latin",
+    format: "codex",
   }, 
+  {
+    id: "nectar_4_kitling_ripes_tasty_treats",
+    displayName: {
+      en: "Kitling Ripe's Tasty Treats",
+      zh: "《老成仔猫的美味佳肴》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 4,
+    },
+    format: "codex",
+  }, 
+  {
+    id: "nectar_4_the_most_sorrowful_end_of_the_lady_nonna",
+    displayName: {
+      en: "The Most Sorrowful End of the Lady Nonna",
+      zh: "《诺娜女士的至悲结局》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 4,
+    },
+    language: "kernewek_henavek",
+    format: "codex",
+  },
+  {
+    id: "nectar_4_three_flowers_hath_the_tree",
+    displayName: {
+      en: "Three Flowers Hath the Tree",
+      zh: "《树生三花》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 4,
+    },
+    format: "codex",
+  },
+  {
+    id: "nectar_6_fekris_herbary",
+    displayName: {
+      en: "Fekri's Herbary",
+      zh: "《费克里的草药学》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 6,
+    },
+    language: "aramaic",
+    format: "codex",
+  },
+  {
+    id: "nectar_6_honey_the_comprehensive_guide",
+    displayName: {
+      en: "Honey: the Comprehensive Guide",
+      zh: "《蜂蜜：综合指南》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 6,
+    },
+    format: "codex",
+  },
+  {
+    id: "nectar_6_the_shadow_in_the_stair",
+    displayName: {
+      en: "The Shadow in the Stair",
+      zh: "《楼梯中的阴影》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 6,
+    },
+    format: "codex",
+  },
+  {
+    id: "nectar_8_the_bee_keepers_ends",
+    displayName: {
+      en: "The Bee-Keeper's Ends",
+      zh: "《养蜂人的目标》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 8,
+    },
+    format: "codex",
+  },
+  {
+    id: "nectar_8_the_berrybook",
+    displayName: {
+      en: "The Berrybook",
+      zh: "《浆果之书》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 8,
+    },
+    language: "killasimi",
+    format: "codex",
+  },
+  {
+    id: "nectar_8_de_ratio_quercuum",
+    displayName: {
+      en: "De Ratio Quercuum",
+      zh: "《De Ratio Quercuum》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 8,
+    },
+    language: "latin",
+    format: "codex",
+  },
+  {
+    id: "nectar_10_green_jasper_tablet",
+    displayName: {
+      en: "Green Jasper Tablet",
+      zh: "《碧玉碑文》",
+    },
+    principle: {
+      id: "nectar",
+      amount: 10,
+    },
+    language: "cracktrack",
+    format: "codex",
+  },
 ];
