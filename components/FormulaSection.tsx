@@ -66,8 +66,8 @@ export default function FormulaSection({
     <div
   className={
     compact
-      ? "mb-6 border-t border-ink/10 pt-4"
-      : "mb-10 border-t border-ink/10 pt-6"
+      ? "mb-6 pt-4"
+      : "mb-10 pt-6"
   }
 >
       <h3 className={compact

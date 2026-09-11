@@ -1,9 +1,27 @@
 import type { CraftableMethod } from "./crafting";
+
 export type MemoryType =
   | "weather"
   | "temporary"
   | "persistent"
   | "numen";
+
+export type MemorySourceAction =
+  | "study"
+  | "talk";
+
+export type MemorySourceType =
+  | "item"
+  | "craftable"
+  | "person"
+  | "animal";
+
+export interface MemorySource {
+  id: string;
+  sourceType: MemorySourceType;
+  action: MemorySourceAction;
+  guaranteed?: boolean;
+}
 
 export interface Memory {
   id: string;
@@ -27,7 +45,8 @@ export interface Memory {
 
   methods?: CraftableMethod[];
 
-  bookSources?: string[];
+  sources?: MemorySource[];
+
   evolveVia?: string[];
 
   icon: string;

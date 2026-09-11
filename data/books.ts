@@ -35,7 +35,7 @@ export interface Book {
     id: string;
     amount: number;
   };
-  language?: string;
+  language?: BookLanguage;
   format: BookFormat;
   memoryId: string;
 }

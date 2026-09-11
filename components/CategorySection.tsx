@@ -37,7 +37,7 @@ export default function CategorySection({
         aria-expanded={isOpen}
         className="flex w-full items-center justify-between px-2 py-3 text-left"
       >
-        <span className="text-lg tracking-[0.15em] uppercase text-ink">
+        <span className="text-xl tracking-[0.15em] uppercase text-ink">
           {label}
         </span>
         <span aria-hidden="true" className="text-ink/40">

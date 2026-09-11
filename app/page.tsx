@@ -114,7 +114,7 @@ if (!isMounted) {
   } bg-parchment flex h-screen overflow-hidden text-ink`}
 >
       {/* Desktop sidebar */}
-      <aside className="hidden md:block md:w-[400px] md:flex-shrink-0 border-r border-ink/10">
+      <aside className="hidden md:block md:w-[360px] md:flex-shrink-0 border-r border-ink/10">
         <MemorySidebar {...sidebarProps} />
       </aside>
 

@@ -450,6 +450,15 @@ export const skills: Record<string, Skill> = {
     image: "/skills/sights_n_sensations.png",
     principles: ["sky", "winter"],
   },
+  sky_stories: {
+    id: "sky_stories",
+    displayName: {
+      en: "Sky Stories",
+      zh: "天空的故事",
+    },
+    image: "/skills/sky_stories.png",
+    principles: ["sky", "rose"],
+  },
   snow_stories: {
     id: "snow_stories",
     displayName: {

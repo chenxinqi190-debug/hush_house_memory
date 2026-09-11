@@ -62,7 +62,7 @@ export default function MemorySidebar({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="px-4 pt-6 pb-4 md:pt-10 md:pb-20">
+      <div className="px-4 pt-6 pb-4 md:pt-6 md:pb-6">
         <h1 className="text-4xl tracking-[0.1em] text-ink md:text-5xl">
           {t.archiveTitle}
         </h1>

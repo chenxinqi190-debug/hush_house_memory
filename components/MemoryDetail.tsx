@@ -1,24 +1,28 @@
 "use client";
 
-import { Memory } from "@/types/memory";
-import { craftables } from "@/data/craftables";
-import { items } from "@/data/items";
-import { skills } from "@/data/skills";
-import { Language, translations } from "@/data/i18n";
 import { useEffect, useState } from "react";
+
+import type { Memory } from "@/types/memory";
+import type { Language } from "@/data/i18n";
+
+import { translations } from "@/data/i18n";
+import { books } from "@/data/books";
+import { craftables } from "@/data/craftables";
+
 import FormulaSection from "@/components/FormulaSection";
 
 interface MemoryDetailProps {
   memory: Memory | null;
   language: Language;
 }
+
 export default function MemoryDetail({
   memory,
   language,
 }: MemoryDetailProps) {
   const t = translations[language];
 
-   const [previewCraftableId, setPreviewCraftableId] =
+  const [previewCraftableId, setPreviewCraftableId] =
     useState<string | null>(null);
 
   useEffect(() => {
@@ -34,17 +38,33 @@ export default function MemoryDetail({
       </div>
     );
   }
+
+  const memoryPrinciples = memory.principles ?? [];
+  const methods = memory.methods ?? [];
+  const sources = memory.sources ?? [];
+
+  const memoryBooks = books
+    .filter((book) => book.memoryId === memory.id)
+    .sort((a, b) => {
+      const principleCompare = a.principle.id.localeCompare(
+        b.principle.id
+      );
+
+      if (principleCompare !== 0) {
+        return principleCompare;
+      }
+
+      return a.principle.amount - b.principle.amount;
+    });
+
   const previewCraftable = previewCraftableId
- ? craftables.find(
+    ? craftables.find(
         (craftable) => craftable.id === previewCraftableId
       ) ?? null
     : null;
 
- const memoryPrinciples = memory.principles ?? [];
-  const methods = memory.methods ?? [];
-
-   return (
-    <article className="w-full max-w-[1700px] px-8 pt-6 pb-14 md:ml-20">
+  return (
+    <article className="w-full max-w-[1700px] px-8 pt-6 pb-14">
       {/* Category */}
       <p className="text-lg uppercase tracking-[0.2em] text-ink/80">
         {t.types[memory.type]}
@@ -76,117 +96,185 @@ export default function MemoryDetail({
         </h3>
 
         {memoryPrinciples.length > 0 ? (
-          <div className="mt-2 flex flex-wrap gap-3">
-            {[...memoryPrinciples]
-              .sort((a, b) => a.id.localeCompare(b.id))
-              .map((principle) => (
-                <div
-                  key={principle.id}
-                  className="flex items-center gap-1"
-                >
-                  <img
-                    src={`/icons/principles/principle.${principle.id}.png`}
-                    alt={principle.id}
-                    className="max-h-6 max-w-6 object-contain"
-                  />
+          <div className="mt-3 flex flex-wrap gap-3">
+            {memoryPrinciples.map((principle) => (
+              <div
+                key={principle.id}
+                className="flex items-center gap-1"
+              >
+                <img
+                  src={`/icons/principles/principle.${principle.id}.png`}
+                  alt={principle.id}
+                  className="max-h-6 max-w-6 object-contain"
+                />
 
-                  {(principle.amount ?? 1) > 1 && (
-                    <span className="text-base text-ink">
-                      {principle.amount}
-                    </span>
-                  )}
-                </div>
-              ))}
+                {(principle.amount ?? 1) > 1 && (
+                  <span className="text-base text-ink">
+                    {principle.amount}
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
         ) : (
-          <p className="mt-2 text-sm italic text-ink/40">{t.none}</p>
+          <p className="mt-2 text-sm italic text-ink/40">
+            {t.none}
+          </p>
         )}
       </section>
 
-      {/* Methods */}
-      <div className="relative mt-12 md:flex md:items-start md:gap-10">
-<section className="w-full min-w-0 md:w-[800px] md:shrink-0">
-{methods.map((method, index) => (
-    <FormulaSection
-      key={method.id}
-      method={method}
-      index={index}
-      language={language}
-      title={t.crafting}
-       onOpenPreview={(craftableId) => {
-  setPreviewCraftableId((current) =>
-    current === craftableId ? null : craftableId
-  );
-}}
-    />
-  ))}
-</section>
-
-{previewCraftable && (
-    <>
-    <button
-      type="button"
-      aria-label="Close preview"
-      onClick={() => setPreviewCraftableId(null)}
-      className="fixed inset-0 z-40 bg-black/20 md:hidden"
-    />
-    <aside className={`fixed inset-x-0 bottom-0 z-50
-      max-h-[78vh] overflow-y-auto overflow-x-hidden
-      border-t border-ink/20 bg-parchment
-      px-5 pt-5 pb-8 shadow-xl
-      transition-transform duration-300 ease-out
-
-      md:sticky md:top-6 md:left-auto md:right-auto md:bottom-auto
-    md:z-auto md:ml-8 md:max-h-none md:w-[420px]
-    md:shrink-0 md:overflow-visible
-    md:border-l md:border-t-0
-    md:bg-none md:bg-transparent md:pl-6 md:pr-0 md:pt-0 md:pb-0
-    md:shadow-none md:transition-none md:translate-y-0
-`}>
-      <div className="flex items-start justify-between gap-4">
-        <h2 className="text-2xl text-ink">
-          {previewCraftable.displayName[language]}
-        </h2>
-
-        <button
-          type="button"
-          onClick={() => setPreviewCraftableId(null)}
-          className="text-2xl leading-none text-ink/50 hover:text-ink"
-          aria-label="Close"
-        >
-          ×
-        </button>
-      </div>
-
-      <section className="mt-6">
-        {previewCraftable.methods.map((method, index) => (
-          <FormulaSection
-            key={method.id}
-            method={method}
-            index={index}
-            language={language}
-            compact
-          />
-        ))}
-      </section>
-    </aside>
-    </>
-  )}
-</div>
-
-{/* Note */}
-{memory.note && (
-  <section className="mt-6">
-    {memory.note[language].map((line, index) => (
-      <p
-        key={index}
-        className="text-base italic leading-relaxed text-ink/60"
-      >
-        {line}
-      </p>
-    ))}
+      {/* Evolve Via */}
+{memory.evolveVia && memory.evolveVia.length > 0 && (
+  <section className="mt-8">
+    ...
   </section>
 )}
+
+<div className="mt-12 border-t border-ink/20 pt-12">
+      {/* Book Sources */}
+      {memoryBooks.length > 0 && (
+        <section>
+          <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
+            {t.bookSources}
+          </h3>
+
+          <div className="mt-4 space-y-3">
+            {memoryBooks.map((book) => (
+              <div
+                key={book.id}
+                className="flex items-center gap-3"
+              >
+                <div className="flex min-w-[70px] items-center gap-1">
+                  <img
+                    src={`/icons/principles/principle.${book.principle.id}.png`}
+                    alt={book.principle.id}
+                    className="h-6 w-6 object-contain"
+                  />
+
+                  <span className="text-base text-ink">
+                    {book.principle.amount}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-lg text-ink">
+                    {book.displayName[language]}
+                  </p>
+
+                  <p className="text-sm text-ink/50">
+                    {t.bookFormats[book.format]}
+{book.language && ` | ${t.bookLanguages[book.language]}`}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Other Sources */}
+      {sources.length > 0 && (
+  <section className="mt-12">
+    <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
+      {t.sources}
+    </h3>
+
+    <div className="mt-4 space-y-3">
+      {sources.map((source) => (
+        <div
+          key={`${source.sourceType}-${source.id}`}
+          className="flex items-center gap-3"
+        >
+          <span className="text-sm uppercase tracking-wide text-ink/50">
+            {source.action === "study" ? "👁" : "👄"}
+          </span>
+
+          <span className="text-lg text-ink">
+            {source.id}
+          </span>
+
+          {source.guaranteed === false && (
+            <span className="text-sm italic text-ink/50">
+              {t.possible}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+{/* Crafting */}
+      {methods.length > 0 && (
+        <div className="relative mt-12 md:flex md:items-start md:gap-10">
+          <section className="w-full min-w-0 md:w-[800px] md:shrink-0">
+            {methods.map((method, index) => (
+              <FormulaSection
+                key={method.id}
+                method={method}
+                index={index}
+                language={language}
+                title={t.crafting}
+                previewCraftableId={previewCraftableId}
+                onOpenPreview={(craftableId) => {
+                  setPreviewCraftableId((current) =>
+                    current === craftableId
+                      ? null
+                      : craftableId
+                  );
+                }}
+              />
+            ))}
+          </section>
+
+          {previewCraftable && (
+            <aside className="md:sticky md:top-6 md:w-[420px] md:shrink-0 md:border-l md:border-ink/20 md:pl-6">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-2xl text-ink">
+                  {previewCraftable.displayName[language]}
+                </h2>
+
+                <button
+                  type="button"
+                  onClick={() => setPreviewCraftableId(null)}
+                  className="text-2xl leading-none text-ink/50 hover:text-ink"
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+              </div>
+
+              <section className="mt-6">
+                {previewCraftable.methods.map(
+                  (method, index) => (
+                    <FormulaSection
+                      key={method.id}
+                      method={method}
+                      index={index}
+                      language={language}
+                      compact
+                    />
+                  )
+                )}
+              </section>
+            </aside>
+          )}
+        </div>
+      )}
+</div>
+      {/* Note */}
+      {memory.note && (
+        <section className="mt-6">
+          {memory.note[language].map((line, index) => (
+            <p
+              key={index}
+              className="text-base italic leading-relaxed text-ink/60"
+            >
+              {line}
+            </p>
+          ))}
+        </section>
+      )}
     </article>
   );
 }
