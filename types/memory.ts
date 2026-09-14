@@ -7,8 +7,8 @@ export type MemoryType =
   | "numen";
 
 export type MemorySourceAction =
-  | "study"
-  | "talk";
+  | "consider"
+  | "conversation";
 
 export type MemorySourceType =
   | "item"

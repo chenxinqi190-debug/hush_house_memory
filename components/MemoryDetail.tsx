@@ -8,6 +8,7 @@ import type { Language } from "@/data/i18n";
 import { translations } from "@/data/i18n";
 import { books } from "@/data/books";
 import { craftables } from "@/data/craftables";
+import { wisdoms } from "@/data/wisdoms";
 
 import FormulaSection from "@/components/FormulaSection";
 
@@ -42,6 +43,13 @@ export default function MemoryDetail({
   const memoryPrinciples = memory.principles ?? [];
   const methods = memory.methods ?? [];
   const sources = memory.sources ?? [];
+  const considerSources = sources.filter(
+  (source) => source.action === "consider"
+);
+const evolveVia = memory.evolveVia ?? [];
+const conversationSources = sources.filter(
+  (source) => source.action === "conversation"
+);
 
   const memoryBooks = books
     .filter((book) => book.memoryId === memory.id)
@@ -89,124 +97,201 @@ export default function MemoryDetail({
         {memory.description[language]}
       </p>
 
-      {/* Principles */}
-      <section className="mt-12">
-        <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
-          {t.principles}
-        </h3>
+{/* Principles + Evolve Via */}
+<section
+  className={`mt-12 grid gap-10 ${
+    evolveVia.length > 0 ? "md:grid-cols-2" : "md:grid-cols-1"
+  }`}
+>
+  {/* Principles */}
+  <div>
+    <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
+      {t.principles}
+    </h3>
 
-        {memoryPrinciples.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-3">
-            {memoryPrinciples.map((principle) => (
-              <div
-                key={principle.id}
-                className="flex items-center gap-1"
-              >
-                <img
-                  src={`/icons/principles/principle.${principle.id}.png`}
-                  alt={principle.id}
-                  className="max-h-6 max-w-6 object-contain"
-                />
+    {memoryPrinciples.length > 0 ? (
+      <div className="mt-3 flex flex-wrap gap-3">
+        {memoryPrinciples.map((principle) => (
+          <div
+            key={principle.id}
+            className="flex items-center gap-1"
+          >
+            <img
+              src={`/icons/principles/principle.${principle.id}.png`}
+              alt={principle.id}
+              className="max-h-6 max-w-6 object-contain"
+            />
 
-                {(principle.amount ?? 1) > 1 && (
-                  <span className="text-base text-ink">
-                    {principle.amount}
-                  </span>
-                )}
-              </div>
-            ))}
+            {(principle.amount ?? 1) > 1 && (
+              <span className="text-base text-ink">
+                {principle.amount}
+              </span>
+            )}
           </div>
-        ) : (
-          <p className="mt-2 text-sm italic text-ink/40">
-            {t.none}
-          </p>
-        )}
-      </section>
+        ))}
+      </div>
+    ) : (
+      <p className="mt-2 text-sm italic text-ink/40">
+        {t.none}
+      </p>
+    )}
+  </div>
 
-      {/* Evolve Via */}
-{memory.evolveVia && memory.evolveVia.length > 0 && (
-  <section className="mt-8">
-    ...
-  </section>
-)}
+  {/* Evolve Via */}
+  {evolveVia.length > 0 && (
+    <div>
+      <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
+        {t.evolveVia}
+      </h3>
 
-<div className="mt-12 border-t border-ink/20 pt-12">
+      <div className="mt-3 flex flex-wrap gap-4">
+        {evolveVia.map((wisdomId) => {
+          const wisdom = wisdoms[wisdomId];
+
+          if (!wisdom) {
+            console.warn(`Unknown wisdom id: ${wisdomId}`);
+            return null;
+          }
+
+          return (
+            <div
+              key={wisdomId}
+              className="flex items-center gap-2"
+            >
+              <img
+                src={wisdom.icon}
+                alt={wisdom.displayName[language]}
+                className="h-8 w-8 object-contain"
+              />
+
+              <span className="text-lg text-ink">
+                {wisdom.displayName[language]}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
+</section>
+
+{(memoryBooks.length > 0 ||
+  sources.length > 0 ||
+  methods.length > 0) && (
+  <div className="mt-12 border-t border-ink/20 pt-10">
       {/* Book Sources */}
       {memoryBooks.length > 0 && (
-        <section>
-          <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
-            {t.bookSources}
-          </h3>
+  <section>
+    <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
+      {t.bookSources}
+    </h3>
 
-          <div className="mt-4 space-y-3">
-            {memoryBooks.map((book) => (
-              <div
-                key={book.id}
-                className="flex items-center gap-3"
-              >
-                <div className="flex min-w-[70px] items-center gap-1">
-                  <img
-                    src={`/icons/principles/principle.${book.principle.id}.png`}
-                    alt={book.principle.id}
-                    className="h-6 w-6 object-contain"
-                  />
+         <div className="mt-4 space-y-1">
+  {memoryBooks.map((book) => (
+    <div
+      key={book.id}
+      className="flex items-start gap-3 py-1"
+    >
+      <div className="flex min-w-[48px] items-center gap-1 pt-1">
+        <img
+          src={`/icons/principles/principle.${book.principle.id}.png`}
+          alt={book.principle.id}
+          className="h-6 w-6 object-contain"
+        />
 
-                  <span className="text-base text-ink">
-                    {book.principle.amount}
-                  </span>
-                </div>
+        <span className="text-base text-ink">
+          {book.principle.amount}
+        </span>
+      </div>
 
-                <div>
-                  <p className="text-lg text-ink">
-                    {book.displayName[language]}
-                  </p>
+      <div className="min-w-0">
+        <p className="text-lg leading-tight text-ink">
+          {book.displayName[language]}
+        </p>
 
-                  <p className="text-sm text-ink/50">
-                    {t.bookFormats[book.format]}
-{book.language && ` | ${t.bookLanguages[book.language]}`}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <p className="mt-0.5 text-sm leading-tight text-ink/50">
+          {t.bookFormats[book.format]}
+          {book.language &&
+            ` | ${t.bookLanguages[book.language]}`}
+        </p>
+      </div>
+    </div>
+  ))}
+</div></section>
       )}
 
       {/* Other Sources */}
       {sources.length > 0 && (
-  <section className="mt-12">
+  <section className={memoryBooks.length > 0 ? "mt-12" : ""}>
     <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
       {t.sources}
     </h3>
 
-    <div className="mt-4 space-y-3">
-      {sources.map((source) => (
-        <div
-          key={`${source.sourceType}-${source.id}`}
-          className="flex items-center gap-3"
-        >
-          <span className="text-sm uppercase tracking-wide text-ink/50">
-            {source.action === "study" ? "👁" : "👄"}
-          </span>
+    <div className="mt-4 space-y-6">
+  {/* Consider Sources */}
+  {considerSources.length > 0 && (
+    <div>
+      <div className="mb-3 flex items-center gap-2">
+        <img
+    src="/icons/action/consider.png"
+    alt=""
+    className="h-5 w-5 object-contain"
+  />
+        <span className="text-sm uppercase tracking-wide text-ink/50">
+          {t.consider}
+        </span>
+      </div>
 
-          <span className="text-lg text-ink">
+      <div className="space-y-3">
+        {considerSources.map((source) => (
+          <div
+            key={`${source.sourceType}-${source.id}`}
+            className="text-lg text-ink"
+          >
             {source.id}
-          </span>
-
-          {source.guaranteed === false && (
-            <span className="text-sm italic text-ink/50">
-              {t.possible}
-            </span>
-          )}
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
-  </section>
+  )}
+
+  {/* Conversation Sources */}
+  {conversationSources.length > 0 && (
+    <div>
+      <div className="mb-3 flex items-center gap-2">
+        <img
+    src="/icons/action/conversation.png"
+    alt=""
+    className="h-5 w-5 object-contain"
+  />
+        <span className="text-sm uppercase tracking-wide text-ink/50">
+          {t.conversation}
+        </span>
+      </div>
+
+      <div className="space-y-3">
+        {conversationSources.map((source) => (
+          <div
+            key={`${source.sourceType}-${source.id}`}
+            className="text-lg text-ink"
+          >
+            {source.id}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+</section>
 )}
 
 {/* Crafting */}
       {methods.length > 0 && (
-        <div className="relative mt-12 md:flex md:items-start md:gap-10">
+  <div
+    className={`relative md:flex md:items-start md:gap-10 ${
+      memoryBooks.length > 0 || sources.length > 0 ? "mt-12" : ""
+    }`}
+  >
           <section className="w-full min-w-0 md:w-[800px] md:shrink-0">
             {methods.map((method, index) => (
               <FormulaSection
@@ -261,7 +346,9 @@ export default function MemoryDetail({
           )}
         </div>
       )}
-</div>
+      </div>
+      )}
+
       {/* Note */}
       {memory.note && (
         <section className="mt-6">

@@ -20,6 +20,9 @@ export const translations = {
     bookSources: "Obtained by Reading",
     sources: "Sources",
     possible: "Possible",
+    evolveVia: "Evolve Via",
+    consider: "Consider",
+    conversation: "Conversation",
     types: {
       weather: "Weather",
       temporary: "Temporary",
@@ -72,8 +75,11 @@ export const translations = {
     crafting: "制作方法",
     memories: "回忆",
     bookSources: "阅读获得",
-    sources: "Sources",
+    sources: "交互获得",
     possible: "Possible",
+    evolveVia: "进阶",
+    consider: "研究",
+    conversation: "交谈",
     types: {
       weather: "天气",
       temporary: "短时回忆",

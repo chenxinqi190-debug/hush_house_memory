@@ -296,6 +296,14 @@ export const items: Record<string, Item> = {
     icon: "/icons/living_relic.png",
     craftableId: "living_relic" 
   },
+  memory: {
+    id: "memory",
+    displayName: {
+      en: "Memory", 
+      zh: "回忆",
+    },
+    icon: "/icons/memory.png",
+  },
   metal: {
     id: "metal",
     displayName: {
