@@ -46,11 +46,13 @@ export default function MemoryDetail({
   const considerSources = sources.filter(
   (source) => source.action === "consider"
 );
-const evolveVia = memory.evolveVia ?? [];
 const conversationSources = sources.filter(
   (source) => source.action === "conversation"
 );
-
+const activitySources = sources.filter(
+  (source) => source.action === "activity"
+);
+const evolveVia = memory.evolveVia ?? [];
   const memoryBooks = books
     .filter((book) => book.memoryId === memory.id)
     .sort((a, b) => {
@@ -243,13 +245,15 @@ const conversationSources = sources.filter(
       </div>
 
       <div className="space-y-3">
-        {considerSources.map((source) => (
+        {considerSources.map((source, index) => (
           <div
-            key={`${source.sourceType}-${source.id}`}
-            className="text-lg text-ink"
-          >
-            {source.id}
-          </div>
+    key={source.id ?? `consider-text-${index}`}
+    className="text-lg text-ink"
+  >
+    {source.sourceType === "text"
+      ? source.text?.[language]
+      : source.id}
+  </div>
         ))}
       </div>
     </div>
@@ -281,6 +285,19 @@ const conversationSources = sources.filter(
       </div>
     </div>
   )}
+  {/* Activity Sources */}
+{activitySources.length > 0 && (
+  <div className="space-y-2">
+    {activitySources.map((source, index) => (
+      <p
+        key={`activity-${index}`}
+        className="text-lg leading-snug text-ink"
+      >
+        {source.text?.[language]}
+      </p>
+    ))}
+  </div>
+)}
 </div>
 </section>
 )}

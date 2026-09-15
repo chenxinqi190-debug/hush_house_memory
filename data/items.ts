@@ -27,6 +27,14 @@ export const items: Record<string, Item> = {
     },
     icon: "/icons/aglaophotis.png",
   },
+  ascendant_harmony: {
+    id: "ascendant_harmony",
+    displayName: {
+      en: "Ascendant Harmony", 
+      zh: "方兴和声",
+    },
+    icon: "/icons/memories/ascendant_harmony.png",
+  },
   asimel: {
     id: "asimel",
     displayName: {
@@ -86,6 +94,14 @@ export const items: Record<string, Item> = {
     icon: "/icons/chimeric_larva.png",
     craftableId: "chimeric_larva"
   },
+  confounding_parable: {
+    id: "confounding_parable",
+    displayName: {
+      en: "Confounding Parable",
+      zh: "混淆寓言",
+    },
+    icon:"/icons/memories/confounding_parable.png"
+  },
   cuckoo_honey: {
     id: "cuckoo_honey",
     displayName: {
@@ -93,6 +109,15 @@ export const items: Record<string, Item> = {
       zh: "杜鹃蜜",
     },
     icon:"/icons/cuckoo_honey.png"
+  },
+  enduring_reflection: 
+  {
+    id: "enduring_reflection",
+    displayName: {
+      en: "Enduring Reflection",
+      zh: "弥久映像",
+    },
+    icon:"/icons/memories/enduring_reflection.png"
   },
   egg: {
     id: "egg",
@@ -296,6 +321,14 @@ export const items: Record<string, Item> = {
     icon: "/icons/living_relic.png",
     craftableId: "living_relic" 
   },
+  mazarine_fife: {
+    id: "mazarine_fife",
+    displayName: {
+      en: "Mazarine Fife", 
+      zh: "马扎林横笛",
+    },
+    icon: "/icons/mazarine_fife.png",
+  },
   memory: {
     id: "memory",
     displayName: {
@@ -319,6 +352,14 @@ export const items: Record<string, Item> = {
       zh: "蛾兰",
     },
     icon: "/icons/moth_orchid.png",
+  },
+  old_moment: {
+    id: "old_moment",
+    displayName: {
+      en: "Old Moment", 
+      zh: "旧日时刻",
+    },
+    icon: "/icons/memories/old_moment.png",
   },
   pale_mommet: {
     id: "pale_mommet",
@@ -373,7 +414,16 @@ export const items: Record<string, Item> = {
     icon: "/icons/solomons_preparation.png",
     craftableId: "solomons_preparation"
     },
-    thunderskins_paean: {
+  stymphling: {
+    id: "stymphling",
+    displayName: {
+      en: "Stymphling",
+      zh: "斯廷法利斯湖兽",
+    },
+    icon: "/icons/stymphling.png",
+    craftableId: "stymphling"
+    },
+  thunderskins_paean: {
     id: "thunderskins_paean",
     displayName: {
       en: "Thunderskin's Paean",
@@ -382,6 +432,13 @@ export const items: Record<string, Item> = {
     icon: "/icons/thunderskins_paean.png",
     craftableId: "thunderskins_paean"
     },
+  winning_move: {
+    id: "winning_move",
+    displayName: {
+      en: "Winning Move",
+      zh: "致胜之着",
+    },
+    icon: "/icons/memories/winning_move.png"},
   wire_orichalcum: {
     id: "wire_orichalcum",
     displayName: {

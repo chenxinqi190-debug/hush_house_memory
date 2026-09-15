@@ -1473,7 +1473,7 @@ export const books: Book[] = [
     },
     language:"ericapaean",
     format: "codex",
-    memoryId: "numen_a_final_understanding"
+    memoryId: "numen_inescapable_confinement"
   },
   {
     id: "knock_12_the_grand_passage_of_the_hours",
@@ -3429,7 +3429,7 @@ export const books: Book[] = [
     id: "sky_10_shuritic_book_of_suns",
     displayName: {
       en: "Shuritic Book of Suns",
-      zh: "《Shuritic Book of Suns》",
+      zh: "《骄阳之书》（书珥版）",
     },
     principle: {
       id: "sky",

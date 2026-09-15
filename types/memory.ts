@@ -8,18 +8,24 @@ export type MemoryType =
 
 export type MemorySourceAction =
   | "consider"
-  | "conversation";
+  | "conversation"
+  | "activity";
 
 export type MemorySourceType =
   | "item"
   | "craftable"
   | "person"
-  | "animal";
+  | "animal"
+  | "text";
 
 export interface MemorySource {
-  id: string;
-  sourceType: MemorySourceType;
   action: MemorySourceAction;
+  id?: string;
+  sourceType: MemorySourceType;
+  text?: {
+    en: string;
+    zh: string;
+  };
   guaranteed?: boolean;
 }
 
