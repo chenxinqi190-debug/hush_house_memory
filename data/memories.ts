@@ -1,5 +1,6 @@
 import type { Memory } from "@/types/memory";
 import { notEqual } from "assert";
+import { sourceMapsEnabled } from "process";
 
 export const memories: Memory[] = [
   {
@@ -447,7 +448,7 @@ export const memories: Memory[] = [
   {
     id: "memory_gossip",
     displayName: {
-      en: "Memory: Goosip",
+      en: "Memory: Gossip",
       zh: "回忆：流言",
     },
     description: {
@@ -603,9 +604,78 @@ export const memories: Memory[] = [
       { id: "forge", amount: 1 },{ id: "winter", amount: 2 }
     ],
     sources: [
-{
-    text:{en: "Bitter food",zh: "苦味食物"},
-    sourceType: "text",
+    {
+    id: "acrid_marrow",
+    sourceType: "item",
+    action: "consider",
+  },{
+    id: "amethyst_ampoule",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "basket_of_leeks",
+    sourceType: "item",
+    action: "consider",
+  },
+  {
+    id: "basket_of_onions",
+    sourceType: "item",
+    action: "consider",
+  },
+  {
+    id: "curious_seashell",
+    sourceType: "item",
+    action: "consider",
+  },
+  {
+    id: "dearday_lens",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "flushed_mommet",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "glassfinger_toxin",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "mushroom_meringue",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "wire_silver",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "salt_sign",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "snowflake_candle",
+    sourceType: "item",
+    action: "consider",
+  },
+  {
+    id: "wire_orichalcum",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "wire_silver",
+    sourceType: "craftable",
+    action: "consider",
+  },
+  {
+    id: "wormy_pumpkin",
+    sourceType: "item",
     action: "consider",
   }],
     type: "temporary",
@@ -707,7 +777,7 @@ export const memories: Memory[] = [
     action: "consider",
   },
 {
-    text: {en: "Most dishes", zh: "大部分菜品"},
+    text: {en: "Most dishes", zh: "大部分可制作菜品"},
     sourceType: "text",
     action: "consider",
   }],
@@ -727,6 +797,36 @@ export const memories: Memory[] = [
     principles: [
       { id: "nectar", amount: 1 }],
     type: "temporary",
+    sources: [
+      {id: "paradise_palm",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "red_practice_sword",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "aglaophotis",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "ambergris_chunk",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "encaustum_terminale_marakat",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "moth_orchid",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "potted_white_orchid",
+        sourceType: "item",
+        action: "consider"
+      },
+    ],
     icon: "/memories/memory_scent.png",
   },
   {
