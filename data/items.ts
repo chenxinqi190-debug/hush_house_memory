@@ -11,6 +11,14 @@ export interface Item {
 }
 
 export const items: Record<string, Item> = {
+  acrid_marrow: {
+    id: "acrid_marrow",
+    displayName: {
+      en: "Acrid Marrow",
+      zh: "苦西葫芦",
+    },
+    icon: "/icons/acrid_marrow.png",
+  },
   agave_aeterna: {
     id: "agave_aeterna",
     displayName: {
@@ -27,6 +35,48 @@ export const items: Record<string, Item> = {
     },
     icon: "/icons/aglaophotis.png",
   },
+  aglaophotis_scented_candle: {
+    id: "aglaophotis_scented_candle",
+    displayName: {
+      en: "Aglaophotis-Scented Candle",
+      zh: "阿格劳福提斯花薰烛",
+    },
+    icon: "/icons/aglaophotis_scented_candle.png",
+    craftableId: "aglaophotis_scented_candle",
+  },
+  ambergris_chunk: {
+    id: "ambergris_chunk",
+    displayName: {
+      en: "Ambergris Chunk",
+      zh: "龙涎香块",
+    },
+    icon: "/icons/ambergris_chunk.png",
+  },
+  amethyst_ampoule: {
+    id: "amethyst_ampoule",
+    displayName: {
+      en: "Amethyst Ampoule",
+      zh: "紫晶安瓿瓶",
+    },
+    icon: "/icons/amethyst_ampoule.png",
+    craftableId: "amethyst_ampoule",
+  },
+  animal_bones: {
+    id: "animal_bones",
+    displayName: {
+      en: "Animal Bones",
+      zh: "兽骨",
+    },
+    icon: "/icons/animal_bones.png",
+  },
+  arsenic: {
+    id: "arsenic",
+    displayName: {
+      en: "Arsenic",
+      zh: "砒霜",
+    },
+    icon: "/icons/arsenic.png",
+  },
   ascendant_harmony: {
     id: "ascendant_harmony",
     displayName: {
@@ -34,6 +84,15 @@ export const items: Record<string, Item> = {
       zh: "方兴和声",
     },
     icon: "/icons/memories/ascendant_harmony.png",
+  },
+  ashartine: {
+    id: "ashartine",
+    displayName: {
+      en: "Ashartine",
+      zh: "阿夏廷",
+    },
+    icon: "/icons/ashartine.png",
+    craftableId: "ashartine",
   },
   asimel: {
     id: "asimel",
@@ -43,6 +102,64 @@ export const items: Record<string, Item> = {
     },
     icon: "/icons/asimel.png",
     craftableId: "asimel"
+  },
+  atlantic_amber: {
+    id: "atlantic_amber",
+    displayName: {
+      en: "Atlantic Amber",
+      zh: "大西洋琥珀",
+    },
+    icon: "/icons/atlantic_amber.png",
+  },
+  awakened_feather: {
+    id: "awakened_feather",
+    displayName: {
+      en: "Awakened Feather",
+      zh: "觉醒翎羽",
+    },
+    icon: "/icons/awakened_feather.png",
+    craftableId: "awakened_feather",
+  },
+  azoth: {
+    id: "azoth",
+    displayName: {
+      en: "Azoth",
+      zh: "阿佐特",
+    },
+    icon: "/icons/azoth.png",
+    craftableId: "azoth",
+  },
+  basket_leeks: {
+    id: "basket_leeks",
+    displayName: {
+      en: "Basket Of Leeks",
+      zh: "一篮韭葱",
+    },
+    icon: "/icons/basket_leeks.png",
+  },
+  basket_onions: {
+    id: "basket_onions",
+    displayName: {
+      en: "Basket Of Onions",
+      zh: "一篮洋葱",
+    },
+    icon: "/icons/basket_onions.png",
+  },
+  basket_vegetables: {
+    id: "basket_vegetables",
+    displayName: {
+      en: "Basket Of Onions",
+      zh: "一篮蔬菜",
+    },
+    icon: "/icons/basket_vegetables.png",
+  },
+  bedside_candleholder: {
+    id: "bedside_candleholder",
+    displayName: {
+      en: "Bedside Candleholder",
+      zh: "床头烛台",
+    },
+    icon: "/icons/bedside_candleholder.png",
   },
   beeswax: {
     id: "beeswax",
@@ -69,6 +186,23 @@ export const items: Record<string, Item> = {
     icon: "/icons/bitterblack_salts.png",
     craftableId: "bitterblack_salts"
   },
+  black_dove_wine: {
+    id: "black_dove_wine",
+    displayName: {
+      en: "Black Dove Wine",
+      zh: "黑鸽酒",
+    },
+    icon: "/icons/black_dove_wine.png",
+  },
+  blackberry_jam: {
+    id: "blackberry_jam",
+    displayName: {
+      en: "Blackberry Jam",
+      zh: "黑莓酱",
+    },
+    icon: "/icons/blackberry_jam.png",
+    craftableId: "blackberry_jam",
+  },
     blue_crown: {
     id: "blue_crown",
     displayName: {
@@ -77,13 +211,71 @@ export const items: Record<string, Item> = {
     },
     icon: "/icons/blue_crown.png",
   },
-    bowl_of_sea_blest_pears: {
+  bokken_captain_torgue_n_mistress_dearday: {
+    id: "bokken_captain_torgue_n_mistress_dearday",
+    displayName: {
+      en: "Bokken Captain Torgue and Mistress Dearday",
+      zh: "木刀：图格上尉与蒂尔黛夫人",
+    },
+    icon: "/icons/bokken_captain_torgue_n_mistress_dearday.png",
+  },
+  bowl_of_sea_blest_pears: {
     id: "bowl_of_sea_blest_pears",
     displayName: {
       en: "Bowl of Sea-Blest Pears",
       zh: "一碗海佑梨",
     },
     icon: "/icons/bowl_of_sea_blest_pears.png",
+  },
+  canned_ham: {
+    id: "canned_ham",
+    displayName: {
+      en: "Canned Ham",
+      zh: "火腿罐头",
+    },
+    icon: "/icons/canned_ham.png",
+  },
+  catsclaw: {
+    id: "catsclaw",
+    displayName: {
+      en: "Catsclaw",
+      zh: "猫爪草",
+    },
+    icon: "/icons/catsclaw.png",
+  },
+  catwink: {
+    id: "catwink",
+    displayName: {
+      en: "Catwink",
+      zh: "猫瞬墨",
+    },
+    icon: "/icons/catwink.png",
+    craftableId: "catwink",
+  },
+  chair_of_challenges: {
+    id: "chair_of_challenges",
+    displayName: {
+      en: "Chair Of Challenges",
+      zh: "挑战座椅",
+    },
+    icon: "/icons/chair_of_challenges.png",
+  },
+  chaise_longue_of_conclusions: {
+    id: "chaise_longue_of_conclusions",
+    displayName: {
+      en: "Chaise Longue Of Conclusions",
+      zh: "定论躺椅",
+    },
+    icon: "/icons/chaise_longue_of_conclusions.png",
+  },
+  chalice_candle: {
+    id: "chalice_candle",
+    displayName: {
+      en: "Chalice Candle",
+      zh: "盏花薰烛",
+    },
+    icon: "/icons/chalice_candle.png",
+    craftableId: "chalice_candle",
   },
   chimeric_larva: {
     id: "chimeric_larva",
@@ -93,6 +285,23 @@ export const items: Record<string, Item> = {
     },
     icon: "/icons/chimeric_larva.png",
     craftableId: "chimeric_larva"
+  },
+  chronsichord: {
+    id: "chronsichord",
+    displayName: {
+      en: "Chronsichord",
+      zh: "时键琴",
+    },
+    icon: "/icons/chronsichord.png",
+    craftableId: "chronsichord",
+  },
+  ch_second_flush_assam_packet: {
+    id: "ch_second_flush_assam_packet",
+    displayName: {
+      en: "C&H Second Flush Assam (Packet)",
+      zh: "C＆H公司夏摘阿萨姆茶（包装）",
+    },
+    icon: "/icons/ch_second_flush_assam_packet.png",
   },
   confounding_parable: {
     id: "confounding_parable",
@@ -109,6 +318,109 @@ export const items: Record<string, Item> = {
       zh: "杜鹃蜜",
     },
     icon:"/icons/cuckoo_honey.png"
+  },
+  cudgels_dyddgu_n_st_twrog: {
+    id: "cudgels_dyddgu_n_st_twrog",
+    displayName: {
+      en: "Cudgels: Dyddgu and St Twrog",
+      zh: "棍棒：蒂迪佳与圣图瓦格",
+    },
+    icon: "/icons/cudgels_dyddgu_n_st_twrog.png",
+  },
+  curious_seashell: {
+    id: "curious_seashell",
+    displayName: {
+      en: "Curious Seashell",
+      zh: "奇异海贝",
+    },
+    icon: "/icons/curious_seashell.png",
+  },
+  dappled_practice_sword: {
+    id: "dappled_practice_sword",
+    displayName: {
+      en: "Dappled Practice Sword",
+      zh: "斑纹训练用剑",
+    },
+    icon: "/icons/dappled_practice_sword.png",
+  },
+  dappled_quarterstaff: {
+    id: "dappled_quarterstaff",
+    displayName: {
+      en: "Dappled Quarterstaff",
+      zh: "斑纹六尺棍",
+    },
+    icon: "/icons/dappled_quarterstaff.png",
+  },
+  dark_marrow: {
+    id: "dark_marrow",
+    displayName: {
+      en: "Dark Marrow",
+      zh: "黯西葫芦",
+    },
+    icon: "/icons/dark_marrow.png",
+    craftableId: "dark_marrow",
+  },
+  dawnlion_coffee_packet: {
+    id: "dawnlion_coffee_packet",
+    displayName: {
+      en: "Dawnlion Coffee (Packet)",
+      zh: "晨狮牌咖啡（包装）",
+    },
+    icon: "/icons/dawnlion_coffee_packet.png",
+  },
+  dearday_lens: {
+    id: "dearday_lens",
+    displayName: {
+      en: "Dearday Lens",
+      zh: "蒂尔黛透镜",
+    },
+    icon: "/icons/dearday_lens.png",
+    craftableId: "dearday_lens",
+  },
+  encaustum_terminale_marakat: {
+    id: "encaustum_terminale_marakat",
+    displayName: {
+      en: "Marakat",
+      zh: "石翠",
+    },
+    icon: "/icons/encaustum_terminale_marakat.png",
+    craftableId: "encaustum_terminale_marakat",
+  },
+  encaustum_terminale_nillycant: {
+    id: "encaustum_terminale_nillycant",
+    displayName: {
+      en: "Nillycant",
+      zh: "喉青",
+    },
+    icon: "/icons/encaustum_terminale_nillycant.png",
+    craftableId: "encaustum_terminale_nillycant",
+  },
+  encaustum_terminale_orpiment_exultant: {
+    id: "encaustum_terminale_orpiment_exultant",
+    displayName: {
+      en: "Orpiment Exultant",
+      zh: "欢欣雌黄",
+    },
+    icon: "/icons/encaustum_terminale_orpiment_exultant.png",
+    craftableId: "encaustum_terminale_orpiment_exultant",
+  },
+  encaustum_terminale_porphyrine: {
+    id: "encaustum_terminale_porphyrine",
+    displayName: {
+      en: "Porphyrine",
+      zh: "贵紫",
+    },
+    icon: "/icons/encaustum_terminale_porphyrine.png",
+    craftableId: "encaustum_terminale_porphyrine",
+  },
+  encaustum_terminale_uzult: {
+    id: "encaustum_terminale_uzult",
+    displayName: {
+      en: "Uzult",
+      zh: "珀金",
+    },
+    icon: "/icons/encaustum_terminale_uzult.png",
+    craftableId: "encaustum_terminale_uzult",
   },
   enduring_reflection: 
   {

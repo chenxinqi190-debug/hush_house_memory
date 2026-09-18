@@ -8,6 +8,7 @@ import type { Language } from "@/data/i18n";
 import { translations } from "@/data/i18n";
 import { books } from "@/data/books";
 import { craftables } from "@/data/craftables";
+import { items } from "@/data/items";
 import { wisdoms } from "@/data/wisdoms";
 
 import FormulaSection from "@/components/FormulaSection";
@@ -72,6 +73,13 @@ const evolveVia = memory.evolveVia ?? [];
         (craftable) => craftable.id === previewCraftableId
       ) ?? null
     : null;
+  
+    //Get source resolver 
+const getSourceObject = (source: (typeof sources)[number]) => {
+  if (!source.id) return null;
+
+  return items[source.id] ?? null;
+};
 
   return (
     <article className="w-full max-w-[1700px] px-8 pt-6 pb-14">
@@ -243,19 +251,47 @@ const evolveVia = memory.evolveVia ?? [];
           {t.consider}
         </span>
       </div>
+      <div className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
 
-      <div className="space-y-3">
-        {considerSources.map((source, index) => (
-          <div
-    key={source.id ?? `consider-text-${index}`}
-    className="text-lg text-ink"
+  {considerSources.map((source, index) => {
+    if (source.sourceType === "text") {
+      return (
+        <p
+          key={`consider-text-${index}`}
+          className="text-lg leading-snug text-ink sm:col-span-2 lg:col-span-3"
+        >
+          {source.text?.[language]}
+        </p>
+      );
+    }
+
+const sourceObject = getSourceObject(source);
+
+if (!sourceObject) {
+  console.warn(
+    `Unknown source: ${source.sourceType} / ${source.id}`
+  );
+  return null;
+}
+
+return (
+  <div
+    key={`${source.sourceType}-${source.id}`}
+    className="flex min-w-0 items-center gap-3"
   >
-    {source.sourceType === "text"
-      ? source.text?.[language]
-      : source.id}
+    <img
+      src={sourceObject.icon}
+      alt=""
+      className="h-12 w-12 shrink-0 object-contain"
+    />
+
+    <span className="min-w-0 text-base leading-snug text-ink">
+      {sourceObject.displayName[language]}
+    </span>
   </div>
-        ))}
-      </div>
+);
+  })}
+</div>
     </div>
   )}
 

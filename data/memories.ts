@@ -1,6 +1,7 @@
 import type { Memory } from "@/types/memory";
 import { notEqual } from "assert";
 import { sourceMapsEnabled } from "process";
+import { text } from "stream/consumers";
 
 export const memories: Memory[] = [
   {
@@ -614,12 +615,12 @@ export const memories: Memory[] = [
     action: "consider",
   },
   {
-    id: "basket_of_leeks",
+    id: "basket_leeks",
     sourceType: "item",
     action: "consider",
   },
   {
-    id: "basket_of_onions",
+    id: "basket_onions",
     sourceType: "item",
     action: "consider",
   },
@@ -645,11 +646,6 @@ export const memories: Memory[] = [
   },
   {
     id: "mushroom_meringue",
-    sourceType: "craftable",
-    action: "consider",
-  },
-  {
-    id: "wire_silver",
     sourceType: "craftable",
     action: "consider",
   },
@@ -777,7 +773,7 @@ export const memories: Memory[] = [
     action: "consider",
   },
 {
-    text: {en: "Most dishes", zh: "大部分可制作菜品"},
+    text: {en: "*Most dishes grants satisfaction.", zh: "*大部分可制作菜品消耗后可获得回忆：满足。"},
     sourceType: "text",
     action: "consider",
   }],
@@ -798,6 +794,7 @@ export const memories: Memory[] = [
       { id: "nectar", amount: 1 }],
     type: "temporary",
     sources: [
+      //not distroying
       {id: "paradise_palm",
         sourceType: "item",
         action: "consider"
@@ -806,23 +803,173 @@ export const memories: Memory[] = [
         sourceType: "item",
         action: "consider"
       },
+      //flowers
       {id: "aglaophotis",
         sourceType: "item",
         action: "consider"
       },
-      {id: "ambergris_chunk",
+      {id: "blue_crown",
         sourceType: "item",
         action: "consider"
       },
-      {id: "encaustum_terminale_marakat",
-        sourceType: "craftable",
+      {id: "catsclaw",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "evas_locks",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "fragrant_chalice",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "healing_herb",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "honeyscar_jasmine",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "lenten_rose",
+        sourceType: "item",
         action: "consider"
       },
       {id: "moth_orchid",
         sourceType: "item",
         action: "consider"
       },
+      {id: "sea_holly",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "trumpeters_lily",
+        sourceType: "item",
+        action: "consider"
+      },
+      //plants
+      {id: "potted_avidity",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "potted_bamboo",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "pot_of_malachite_daisies",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "potted_tree",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "potted_pink_orchid",
+        sourceType: "item",
+        action: "consider"
+      },
       {id: "potted_white_orchid",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "watchful_potted_plant",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "shadowless_silk",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "vase_of_roses",
+        sourceType: "item",
+        action: "consider"
+      },
+      //vegetables
+      {id: "pumpkin",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "pyrus_auricalcinus",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "sack_of_vegetables",
+        sourceType: "item",
+        action: "consider"
+      },
+      //inks
+      {id: "ashartine",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "asimel",
+        sourceType: "craftable",
+        action: "consider"
+      },
+       {id: "catwink",
+        sourceType: "craftable",
+        action: "consider"
+      },      
+      {id: "encaustum_terminale_marakat",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "encaustum_terminale_nillycant",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "encaustum_terminale_orpiment_exultant",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "encaustum_terminale_porphyrine",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "encaustum_terminale_uzult",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "houndsgall",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "perhibiate",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "stargall_ink",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "yewgall_ink",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      //drinks
+      {id: "ch_second_flush_assam_packet",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "dawnlion_coffee_packet",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "evening_isles_coffee_packet",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "trn_cocoa",
+        sourceType: "item",
+        action: "consider"
+      },
+      //others
+    {id: "ambergris_chunk",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "beeswax",
         sourceType: "item",
         action: "consider"
       },
@@ -842,6 +989,13 @@ export const memories: Memory[] = [
     principles: [
       { id: "lantern", amount: 1 }],
     type: "temporary",
+    sources: [
+      {text: 
+        {en: "Obtained by considering various objects in Hush House (nearly any work of art, among others). This ledger has more pressing matter to do than listing them all.",
+        zh: "研究居屋中很多物件都可产生此卡片，尤其是家具与艺术品。本账本暂不列出。"},
+    sourceType: "text",
+    action: "consider"
+  }],
     icon: "/memories/memory_sight.png",
   },
    {
@@ -856,6 +1010,36 @@ export const memories: Memory[] = [
     },
     principles: [
       { id: "heart", amount: 2 },{ id: "sky", amount: 1 }
+    ],
+    sources: [
+      {id: "bedside_candleholder",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "canned_ham",
+        sourceType: "item",
+        action: "consider"
+      },
+      {id: "blackberry_jam",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "gideons_soaks",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "basket_vegetables",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "dark_marrow",
+        sourceType: "craftable",
+        action: "consider"
+      },
+      {id: "golden_marrow",
+        sourceType: "craftable",
+        action: "consider"
+      }
     ],
     type: "temporary",
     icon: "/memories/memory_solace.png",
@@ -872,6 +1056,53 @@ export const memories: Memory[] = [
     },
     principles: [
       { id: "heart", amount: 1 }],
+      sources: [
+        //All not consuming
+        {id: "chair_of_challenges",
+          sourceType: "item",
+          action: "consider"
+        },
+        {id: "terrence_the_chicken",
+          sourceType: "animal",
+          action: "consider"
+        },
+        {id: "tuppence_the_other_chicken",
+          sourceType: "animal",
+          action: "consider"
+        },
+        {id: "magnificent_green_cockatoo",
+          sourceType: "animal",
+          action: "consider"
+        },
+        {id: "outsized_egg",
+          sourceType: "item",
+          action: "consider"
+        },
+        {id: "pet_gull",
+          sourceType: "animal",
+          action: "consider"
+        },
+        {id: "hush_house_key",
+          sourceType: "item",
+          action: "consider"
+        },
+        {id: "mazarine_fife",
+          sourceType: "craftable",
+          action: "consider"
+        },
+        {id: "chaise_longue_of_conclusions",
+          sourceType: "item",
+          action: "consider"
+        },
+        {id: "dappled_practice_sword",
+          sourceType: "item",
+          action: "consider"
+        },
+        {id: "dappled_quarterstaff",
+          sourceType: "item",
+          action: "consider"
+        },
+      ],
     type: "temporary",
     icon: "/memories/memory_sound.png",
   },
@@ -904,6 +1135,12 @@ export const memories: Memory[] = [
     principles: [
       { id: "grail", amount: 1 }],
     type: "temporary",
+    sources: 
+    [{
+      text: {en: "Most food and drinks.", zh: "*各种吃的喝的70余项，不列了。"},
+      sourceType: "text",
+      action: "consider"
+    }],
     icon: "/memories/memory_taste.png",
   },
   {
@@ -918,6 +1155,10 @@ export const memories: Memory[] = [
     },
     principles: [
       { id: "forge", amount: 1 }],
+      sources: [
+        {text: {en: "Obtained by considering various objects in Hush House (most comforts), without consuming them",zh: "研究居屋中大量物品都可获得回忆：触感，包括大部分家具。它们不会被消耗。"},
+          sourceType: "text",
+          action: "consider"}],
     type: "temporary",
     icon: "/memories/memory_touch.png",
   },
