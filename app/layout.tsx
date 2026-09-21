@@ -19,7 +19,7 @@ const notoSerifSC = Noto_Serif_SC({
 });
 
 export const metadata: Metadata = {
-  title: "Hush House Memory",
+  title: "🌀 Hush House Memory",
   description: "The librarian's memory ledger.",
 };
 

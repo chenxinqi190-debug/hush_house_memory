@@ -245,9 +245,9 @@ const getSourceObject = (source: (typeof sources)[number]) => {
         <img
     src="/icons/action/consider.png"
     alt=""
-    className="h-5 w-5 object-contain"
+    className="h-6 w-6 object-contain"
   />
-        <span className="text-sm uppercase tracking-wide text-ink/50">
+        <span className="text-xl uppercase tracking-wide text-ink/50">
           {t.consider}
         </span>
       </div>
@@ -287,6 +287,11 @@ return (
 
     <span className="min-w-0 text-base leading-snug text-ink">
       {sourceObject.displayName[language]}
+      {source.notConsumed && (
+    <span className="ml-2 rounded border border-ink/20 px-1.5 py-0.5 text-xs text-ink/60">
+      {language === "en" ? "NOT CONSUMED" : "不消耗"}
+    </span>
+  )}
     </span>
   </div>
 );
@@ -302,22 +307,41 @@ return (
         <img
     src="/icons/action/conversation.png"
     alt=""
-    className="h-5 w-5 object-contain"
+    className="h-6 w-6 object-contain"
   />
-        <span className="text-sm uppercase tracking-wide text-ink/50">
+        <span className="text-xl uppercase tracking-wide text-ink/50">
           {t.conversation}
         </span>
       </div>
 
       <div className="space-y-3">
-        {conversationSources.map((source) => (
-          <div
-            key={`${source.sourceType}-${source.id}`}
-            className="text-lg text-ink"
-          >
-            {source.id}
-          </div>
-        ))}
+        {conversationSources.map((source, index) => {
+  const sourceObject = getSourceObject(source);
+
+  if (!sourceObject) {
+    console.warn(
+      `Unknown conversation source: ${source.sourceType} / ${source.id}`
+    );
+    return null;
+  }
+
+  return (
+    <div
+      key={`${source.sourceType}-${source.id}-${index}`}
+      className="flex min-w-0 items-center gap-3"
+    >
+      <img
+        src={sourceObject.icon}
+        alt=""
+        className="h-9 w-9 shrink-0 object-contain"
+      />
+
+      <span className="min-w-0 text-base leading-snug text-ink">
+        {sourceObject.displayName[language]}
+      </span>
+    </div>
+  );
+})}
       </div>
     </div>
   )}

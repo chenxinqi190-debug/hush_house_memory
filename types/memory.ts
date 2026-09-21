@@ -27,6 +27,7 @@ export interface MemorySource {
     zh: string;
   };
   guaranteed?: boolean;
+  notConsumed?: boolean;
 }
 
 export interface Memory {

@@ -330,16 +330,19 @@ export const memories: Memory[] = [
     id: "bokken_captain_torgue_n_mistress_dearday",
     sourceType: "item",
     action: "consider",
+    notConsumed: true,
   },
 {
     id: "cudgels_dyddgu_n_st_twrog",
     sourceType: "item",
     action: "consider",
+    notConsumed: true
   },
 {
     id: "wasters_darling_dear_n_father_turk",
     sourceType: "item",
     action: "consider",
+    notConsumed: true,
   }],
     type: "temporary",
     icon: "/memories/memory_contradiction.png",
@@ -376,6 +379,7 @@ export const memories: Memory[] = [
     id: "nighted_chair",
     sourceType: "item",
     action: "consider",
+    notConsumed: true
   },
 {
     id: "perinculate",
@@ -797,11 +801,13 @@ export const memories: Memory[] = [
       //not distroying
       {id: "paradise_palm",
         sourceType: "item",
-        action: "consider"
+        action: "consider",
+        notConsumed: true
       },
       {id: "red_practice_sword",
         sourceType: "item",
-        action: "consider"
+        action: "consider",
+        notConsumed: true
       },
       //flowers
       {id: "aglaophotis",
@@ -1057,51 +1063,60 @@ export const memories: Memory[] = [
     principles: [
       { id: "heart", amount: 1 }],
       sources: [
-        //All not consuming
         {id: "chair_of_challenges",
           sourceType: "item",
-          action: "consider"
+          action: "consider",
+          notConsumed: true
         },
-        {id: "terrence_the_chicken",
-          sourceType: "animal",
-          action: "consider"
+        {id: "chaise_longue_of_conclusions",
+          sourceType: "item",
+          action: "consider",
+          notConsumed: true
         },
-        {id: "tuppence_the_other_chicken",
-          sourceType: "animal",
-          action: "consider"
+        {id: "dappled_practice_sword",
+          sourceType: "item",
+          action: "consider",
+          notConsumed: true
+        },
+        {id: "dappled_quarterstaff",
+          sourceType: "item",
+          action: "consider",
+          notConsumed: true
+        },
+        {id: "hush_house_key",
+          sourceType: "item",
+          action: "consider",
+          notConsumed: true
+        },
+        {id: "mazarine_fife",
+          sourceType: "craftable",
+          action: "consider",
+          notConsumed: true
         },
         {id: "magnificent_green_cockatoo",
           sourceType: "animal",
-          action: "consider"
+          action: "consider",
+          notConsumed: true
+        },
+         {id: "pet_gull",
+          sourceType: "animal",
+          action: "consider",
+          notConsumed: true
+        },
+        {id: "terrence_the_chicken",
+          sourceType: "animal",
+          action: "consider",
+          notConsumed: true
+        },
+        {id: "tuppence_the_other_chicken",
+          sourceType: "animal",
+          action: "consider",
+          notConsumed: true
         },
         {id: "outsized_egg",
           sourceType: "item",
           action: "consider"
-        },
-        {id: "pet_gull",
-          sourceType: "animal",
-          action: "consider"
-        },
-        {id: "hush_house_key",
-          sourceType: "item",
-          action: "consider"
-        },
-        {id: "mazarine_fife",
-          sourceType: "craftable",
-          action: "consider"
-        },
-        {id: "chaise_longue_of_conclusions",
-          sourceType: "item",
-          action: "consider"
-        },
-        {id: "dappled_practice_sword",
-          sourceType: "item",
-          action: "consider"
-        },
-        {id: "dappled_quarterstaff",
-          sourceType: "item",
-          action: "consider"
-        },
+        }
       ],
     type: "temporary",
     icon: "/memories/memory_sound.png",

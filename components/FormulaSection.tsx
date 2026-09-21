@@ -10,6 +10,9 @@ interface FormulaSectionProps {
   compact?: boolean;
   previewCraftableId?: string | null;
   onOpenPreview?: (craftableId: string) => void;
+
+  previewMemoryId?: string | null;
+  onOpenMemoryPreview?: (memoryId: string) => void;
   title?: string;
 }
 
@@ -22,6 +25,8 @@ export default function FormulaSection({
   compact = false,
   previewCraftableId,
   onOpenPreview,
+  previewMemoryId,
+  onOpenMemoryPreview,
   title,
 }: FormulaSectionProps) {
   const t = translations[language];
@@ -168,8 +173,12 @@ export default function FormulaSection({
             <div className="mt-3 flex flex-wrap gap-4">
               {method.requires.map((itemId) => {
                 const item = items[itemId];
-                const canPreview = Boolean(item.craftableId && onOpenPreview);
-                const isSelected = item.craftableId === previewCraftableId;
+                const canPreviewCraftable = Boolean(item.craftableId && onOpenPreview);
+                const canPreviewMemory = Boolean(item.memoryId && onOpenMemoryPreview);
+                const canPreview = canPreviewCraftable || canPreviewMemory;
+                const isSelected =
+                item.craftableId === previewCraftableId ||
+                item.memoryId === previewMemoryId;
                 const content = (
           <>
             <img
@@ -222,9 +231,11 @@ export default function FormulaSection({
             type="button"
             onClick={() => {
               if (item.craftableId) {
-                onOpenPreview?.(item.craftableId);
-              }
-            }}
+    onOpenPreview?.(item.craftableId);
+  } else if (item.memoryId) {
+    onOpenMemoryPreview?.(item.memoryId);
+  }
+}}
             className={`flex w-24 flex-col items-center rounded-sm px-1 py-1 text-center transition ${
               isSelected
                 ? "bg-ink/10"
