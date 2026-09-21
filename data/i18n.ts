@@ -1,5 +1,3 @@
-import { sources } from "next/dist/compiled/webpack/webpack";
-
 export type Language = "en" | "zh";
 
 export const translations = {
@@ -29,6 +27,18 @@ export const translations = {
       persistent: "Persistent",
       numen: "Numen",
     },
+    craftableTypes: {
+  beverage_n_intoxication: "Beverage & Intoxication",
+  ink: "Ink",
+  pigment: "Pigment",
+  tool: "Tool",
+  beast_n_remains: "Beast & Remains",
+  candle: "Candle",
+  metal: "Metal",
+  contamination: "Contamination",
+  mark: "Mark",
+  other: "Other",
+},
     bookFormats: {
       codex: "Codex",
             multitudinous: "Multitudinous",
@@ -86,6 +96,18 @@ export const translations = {
       persistent: "存留回忆",
       numen: "闰识",
       },
+      craftableTypes: {
+  beverage_n_intoxication: "饮品与致醉物",
+  ink: "墨水",
+  pigment: "颜料",
+  tool: "工具",
+  beast_n_remains: "兽类与遗骸",
+  candle: "蜡烛",
+  metal: "金属",
+  contamination: "污染",
+  mark: "印记",
+  other: "其他",
+},
       bookFormats: {
       codex: "典籍",
             multitudinous: "并非孤本",

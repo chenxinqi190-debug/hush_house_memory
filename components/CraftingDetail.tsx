@@ -47,7 +47,7 @@ const craftablePrinciples = craftable.principles ?? [];
       {/* Category */}
       <p className="text-lg uppercase tracking-[0.2em] text-ink/80">
         {craftable.type
-          .map((type) => t.types[type])
+          .map((type) => t.craftableTypes[type])
           .join(" / ")}
       </p>
 
