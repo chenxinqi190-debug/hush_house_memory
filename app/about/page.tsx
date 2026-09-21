@@ -8,14 +8,14 @@ export default function AboutPage() {
         href="/"
         className="mb-8 inline-flex items-center text-base text-ink/60 transition-colors hover:text-ink"
       >
-        ← Return to the Craftbook
+        ← Return to the Memory Ledger
       </Link>
       <h1 className="mb-8 text-4xl">About</h1>
 
       <section className="mb-10">
         <h2 className="mb-3 text-xl font-semibold">Project</h2>
         <p>
-          Hush House Craftbook is an unofficial fan-made recipe archive for
+          Hush House Memory Ledger is an unofficial fan-made recipe archive for
           Book of Hours and its DLC "House of Light".
         </p>
       </section>
