@@ -1,7 +1,4 @@
 import type { Memory } from "@/types/memory";
-import { notEqual } from "assert";
-import { sourceMapsEnabled } from "process";
-import { text } from "stream/consumers";
 
 export const memories: Memory[] = [
   {
@@ -464,6 +461,12 @@ export const memories: Memory[] = [
       { id: "grail", amount: 1 },{ id: "rose", amount: 2 }
     ],
     type: "temporary",
+    sources: [
+      {id: "magnificent_green_cockatoo",
+        sourceType: "animal",
+        action: "conversation"
+      }
+    ],
     icon: "/memories/memory_gossip.png",
   },
   {
@@ -564,8 +567,8 @@ export const memories: Memory[] = [
     ],
     sources: [{
     text:{
-      en: "Renouncing objects at: Sea's Edge | Loading Dock Crane | Brancrug Boathouse",
-      zh: "将物品扔进海里。"
+      en: "* Obtained by renouncing objects at: Sea's Edge | Loading Dock Crane | Brancrug Boathouse",
+      zh: "* 获取方式：在海边 | 装卸码头 | 船库 将物品扔进海里。"
     },
     sourceType: "text",
     action: "activity",
@@ -746,7 +749,7 @@ export const memories: Memory[] = [
     action: "consider",
   },
 {
-    text: {en: "Swimming at Sea's Edge.", zh: "可通过在海崖游泳（消耗健康卡）获得。"},
+    text: {en: "* Can be obtained by swimming at Sea's Edge.", zh: "* 可通过在海边游泳（消耗健康卡）获得。"},
     sourceType: "text",
     action: "activity",
   }],
@@ -777,10 +780,16 @@ export const memories: Memory[] = [
     action: "consider",
   },
 {
-    text: {en: "*Most dishes grants satisfaction.", zh: "*大部分可制作菜品消耗后可获得回忆：满足。"},
+    text: {en: "* Most cooked dishes grant Memory: Satisfaction when consumed.", zh: "* 大部分烹制的菜品在食用后可获得回忆：满足。"},
     sourceType: "text",
     action: "consider",
-  }],
+  },
+  {
+    text: {en: "* Can also be obtained by renouncing a Penny at the Hush House Well.", zh: "* 也可通过在水井处抛弃一枚便士获得。"},
+    sourceType: "text",
+    action: "activity",
+  }
+],
     type: "temporary",
     icon: "/memories/memory_satisfaction.png",
   },
@@ -997,8 +1006,8 @@ export const memories: Memory[] = [
     type: "temporary",
     sources: [
       {text: 
-        {en: "Obtained by considering various objects in Hush House (nearly any work of art, among others). This ledger has more pressing matter to do than listing them all.",
-        zh: "研究居屋中很多物件都可产生此卡片，尤其是家具与艺术品。本账本暂不列出。"},
+        {en: "* Many objects in Hush House grant Memory: Sight when considered, especially furniture and works of art. Most are not consumed. This ledger will not list them all.",
+        zh: "研究居屋中的许多物件都可获得回忆：景象，尤其是家具与艺术品，它们大多不会被消耗。本账本不逐一列出。"},
     sourceType: "text",
     action: "consider"
   }],
@@ -1045,6 +1054,18 @@ export const memories: Memory[] = [
       {id: "golden_marrow",
         sourceType: "craftable",
         action: "consider"
+      },
+      {id: "pet_cat",
+        sourceType: "animal",
+        action: "conversation"
+      },
+      {id: "loyal_dog",
+        sourceType: "animal",
+        action: "conversation"
+      },
+      {text: {en: "* Can also be obtained by going for a swim with a Basket of Towels.", zh: "* 也可携带一篮毛巾游泳获得。"},
+        sourceType: "text",
+        action: "activity"
       }
     ],
     type: "temporary",
@@ -1152,7 +1173,7 @@ export const memories: Memory[] = [
     type: "temporary",
     sources: 
     [{
-      text: {en: "Most food and drinks.", zh: "*各种吃的喝的70余项，不列了。"},
+      text: {en: "* Most food and drink grant Memory: Taste when considered. This ledger will not list them all.", zh: "* 研究大部分食物与饮品都可获得回忆：滋味。本账本暂不逐一列出。"},
       sourceType: "text",
       action: "consider"
     }],
@@ -1171,7 +1192,7 @@ export const memories: Memory[] = [
     principles: [
       { id: "forge", amount: 1 }],
       sources: [
-        {text: {en: "Obtained by considering various objects in Hush House (most comforts), without consuming them",zh: "研究居屋中大量物品都可获得回忆：触感，包括大部分家具。它们不会被消耗。"},
+        {text: {en: "* Many objects in Hush House grant Touch when considered, including most comforts. They are not consumed. This ledger will not list them all.",zh: "* 研究居屋中的许多物品都可获得回忆：触感，大部分是家具，它们不会被消耗。本账本不逐一列出。"},
           sourceType: "text",
           action: "consider"}],
     type: "temporary",
@@ -1620,6 +1641,12 @@ action: "consider"
     ],
     type: "persistent",
     evolveVia: ["skolekosophy"],
+    sources: [
+      {id: "viper",
+        sourceType: "animal",
+        action: "conversation"
+      }
+    ],
     icon: "/memories/earth_sign.png",
   },
   {
@@ -1779,20 +1806,26 @@ action: "consider"
         action: "consider"
       },
       {text: 
-        {en: "Adding Visitors to the Writing-Case (only once per visitor)",
-        zh: "可通过将访客给予的名片加入名片夹获得；"},
+        {en: "Can also be obtained by:",
+        zh: "亦可通过以下方式获取："},
         sourceType: "text",
         action: "activity"
       },
       {text: 
-        {en: "Presenting Lt Arthur Thomas Moore (Ret.) with The Sun's Design (only once).",
-        zh: "可通过与亚瑟·托马斯·摩尔中尉（已退役）交流《太阳的宏图》获得（仅一次）；"},
+        {en: "1) Adding Visitors to the Writing-Case (only once per visitor)",
+        zh: "1）将访客给予的名片加入名片夹（每位访客仅限一次）；"},
         sourceType: "text",
         action: "activity"
       },
       {text: 
-        {en: "Hosting a Salon with 'Daymare' and Mrs and Mr Kille or with Dr Arun Peel and Princess Coquille Amirejibi.",
-        zh: "主持一场沙龙，受邀人包含日魇和基尔夫妇，或者阿伦·剥皮和科基尔·阿米雷吉比公主，可获得该卡片。"},
+        {en: "2) Presenting Lt Arthur Thomas Moore (Ret.) with The Sun's Design (only once).",
+        zh: "2）可通过与亚瑟·托马斯·摩尔中尉（已退役）交流《太阳的宏图》获得（仅一次）；"},
+        sourceType: "text",
+        action: "activity"
+      },
+      {text: 
+        {en: "3) Hosting a Salon with 'Daymare' and Mrs and Mr Kille or with Dr Arun Peel and Princess Coquille Amirejibi.",
+        zh: "3）主持一场沙龙，受邀人包含日魇和基尔夫妇，或者阿伦·剥皮和科基尔·阿米雷吉比公主，可获得该卡片。"},
         sourceType: "text",
         action: "activity"
       }

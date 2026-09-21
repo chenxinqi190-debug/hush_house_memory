@@ -433,6 +433,7 @@ export const items: Record<string, Item> = {
       en: "Enduring Reflection",
       zh: "弥久映像",
     },
+    memoryId: "enduring_reflection", 
     icon:"/icons/memories/enduring_reflection.png"
   },
   egg: {
@@ -739,6 +740,14 @@ export const items: Record<string, Item> = {
     icon: "/icons/living_relic.png",
     craftableId: "living_relic" 
   },
+  loyal_dog: {
+    id: "loyal_dog",
+    displayName: {
+      en: "Loyal Dog",
+      zh: "忠诚的狗",
+    },
+    icon: "/icons/loyal_dog.png",
+  },
   magnificent_green_cockatoo: {
     id: "magnificent_green_cockatoo",
     displayName: {
@@ -880,6 +889,14 @@ export const items: Record<string, Item> = {
       zh: "凶匿成虫",
     },
     icon: "/icons/perilous_imago.png",
+  },
+  pet_cat: {
+    id: "pet_cat",
+    displayName: {
+      en: "Pet Cat",
+      zh: "宠物猫",
+    },
+    icon: "/icons/pet_cat.png",
   },
   pet_gull: {
     id: "pet_gull",
@@ -1179,6 +1196,14 @@ export const items: Record<string, Item> = {
       zh: "瓶插玫瑰",
     },
     icon: "/icons/vase_of_roses.png",
+  },
+  viper: {
+    id: "viper",
+    displayName: {
+      en: "Viper",
+      zh: "温顺蝰蛇",
+    },
+    icon: "/icons/tamed_viper.png",
   },
   walls_of_ys: {
     id: "walls_of_ys",

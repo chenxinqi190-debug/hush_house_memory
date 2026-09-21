@@ -14,6 +14,7 @@ interface FormulaSectionProps {
   previewMemoryId?: string | null;
   onOpenMemoryPreview?: (memoryId: string) => void;
   title?: string;
+  methodCount?: number;
 }
 
 const romanNumerals = ["I", "II", "III", "IV", "V"];
@@ -28,6 +29,7 @@ export default function FormulaSection({
   previewMemoryId,
   onOpenMemoryPreview,
   title,
+  methodCount,
 }: FormulaSectionProps) {
   const t = translations[language];
 
@@ -78,7 +80,7 @@ export default function FormulaSection({
       <h3 className={compact
       ? "text-lg uppercase tracking-[0.16em] text-ink/70"
       : "text-2xl uppercase tracking-[0.2em] text-ink/80"}>
-        {title ?? t.formula} {romanNumerals[index]}
+        {title ?? t.formula} {(methodCount ?? 2) > 1 && ` ${romanNumerals[index]}`}
       </h3>
 
       <div className={compact

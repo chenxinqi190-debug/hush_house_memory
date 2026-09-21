@@ -1,29 +1,21 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 import type { Memory } from "@/types/memory";
-import { memories } from "@/data/memories";
 import type { Language } from "@/data/i18n";
 
 import { translations } from "@/data/i18n";
 import { books } from "@/data/books";
 import { craftables } from "@/data/craftables";
 import { items } from "@/data/items";
-import { wisdoms } from "@/data/wisdoms";
-import MemoryChildPreview from "@/components/MemoryChildPreview";
 
 import FormulaSection from "@/components/FormulaSection";
 
-interface MemoryDetailProps {
-  memory: Memory | null;
-  language: Language;
-}
+interface MemoryChildPreviewProps {memory: Memory;language: Language;}
 
-export default function MemoryDetail({
-  memory,
-  language,
-}: MemoryDetailProps) {
+export default function MemoryChildPreview({memory,language,}: MemoryChildPreviewProps)
+{
   const t = translations[language];
 
   const [previewCraftableId, setPreviewCraftableId] =
@@ -31,34 +23,9 @@ export default function MemoryDetail({
   const [previewMemoryId, setPreviewMemoryId] =
   useState<string | null>(null);
 
-  const childPreviewRef = useRef<HTMLElement>(null);
-
   useEffect(() => {
     setPreviewCraftableId(null);
-    setPreviewMemoryId(null);
   }, [memory?.id]);
-
-  useEffect(() => {
-  if (previewMemoryId || previewCraftableId) {
-    requestAnimationFrame(() => {
-      childPreviewRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest",
-      });
-    });
-  }
-}, [previewMemoryId, previewCraftableId]);
-
-  if (!memory) {
-    return (
-      <div className="flex justify-center px-4 pt-20 md:h-full md:items-center md:pt-0">
-        <p className="whitespace-pre-line text-3xl italic text-ink/80">
-          {t.start}
-        </p>
-      </div>
-    );
-  }
 
   const memoryPrinciples = memory.principles ?? [];
   const methods = memory.methods ?? [];
@@ -72,7 +39,6 @@ const conversationSources = sources.filter(
 const activitySources = sources.filter(
   (source) => source.action === "activity"
 );
-const evolveVia = memory.evolveVia ?? [];
   const memoryBooks = books
     .filter((book) => book.memoryId === memory.id)
     .sort((a, b) => {
@@ -92,9 +58,6 @@ const evolveVia = memory.evolveVia ?? [];
         (craftable) => craftable.id === previewCraftableId
       ) ?? null
     : null;
-  const previewMemory = previewMemoryId
-  ? memories.find((item) => item.id === previewMemoryId) ?? null
-  : null;
   
     //Get source resolver 
 const getSourceObject = (source: (typeof sources)[number]) => {
@@ -104,106 +67,57 @@ const getSourceObject = (source: (typeof sources)[number]) => {
 };
 
   return (
-    <article className="w-full max-w-[1700px] px-8 pt-6 pb-14">
+    <article className="w-full">
       {/* Category */}
-      <p className="text-lg uppercase tracking-[0.2em] text-ink/80">
+      <p className="text-sm uppercase tracking-[0.16em] text-ink/60">
         {t.types[memory.type]}
       </p>
 
       {/* Title */}
-      <h2 className="mt-2 text-4xl leading-snug text-ink">
+      <h2 className="mt-1 text-2xl leading-snug text-ink">
         {memory.displayName[language]}
       </h2>
 
       {/* Icon */}
-      <div className="mt-6 flex h-[150px] w-[150px] items-center justify-center">
-        <img
-          src={`/icons/${memory.icon}`}
-          alt={memory.displayName[language]}
-          className="max-h-full max-w-full object-contain"
-        />
-      </div>
+      <div className="mt-4 flex h-20 w-20 items-center justify-center">
+  <img
+    src={`/icons/${memory.icon}`}
+    alt={memory.displayName[language]}
+    className="max-h-full max-w-full object-contain"
+  />
+</div>
 
-      {/* Description */}
-      <p className="mt-12 whitespace-pre-line text-lg leading-relaxed text-ink">
-        {memory.description[language]}
-      </p>
+{/* Principles */}
+<section className="mt-6">
+  <h3 className="text-lg uppercase tracking-[0.16em] text-ink/70">
+    {t.principles}
+  </h3>
 
-{/* Principles + Evolve Via */}
-<section
-  className={`mt-12 grid gap-10 ${
-    evolveVia.length > 0 ? "md:grid-cols-2" : "md:grid-cols-1"
-  }`}
->
-  {/* Principles */}
-  <div>
-    <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
-      {t.principles}
-    </h3>
+  {memoryPrinciples.length > 0 ? (
+    <div className="mt-3 flex flex-wrap gap-3">
+      {memoryPrinciples.map((principle) => (
+        <div
+          key={principle.id}
+          className="flex items-center gap-1"
+        >
+          <img
+            src={`/icons/principles/principle.${principle.id}.png`}
+            alt={principle.id}
+            className="max-h-6 max-w-6 object-contain"
+          />
 
-    {memoryPrinciples.length > 0 ? (
-      <div className="mt-3 flex flex-wrap gap-3">
-        {memoryPrinciples.map((principle) => (
-          <div
-            key={principle.id}
-            className="flex items-center gap-1"
-          >
-            <img
-              src={`/icons/principles/principle.${principle.id}.png`}
-              alt={principle.id}
-              className="max-h-6 max-w-6 object-contain"
-            />
-
-            {(principle.amount ?? 1) > 1 && (
-              <span className="text-base text-ink">
-                {principle.amount}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p className="mt-2 text-sm italic text-ink/40">
-        {t.none}
-      </p>
-    )}
-  </div>
-
-  {/* Evolve Via */}
-  {evolveVia.length > 0 && (
-    <div>
-      <h3 className="text-2xl uppercase tracking-[0.2em] text-ink/80">
-        {t.evolveVia}
-      </h3>
-
-      <div className="mt-3 flex flex-wrap gap-4">
-        {evolveVia.map((wisdomId) => {
-          const wisdom = wisdoms[wisdomId];
-
-          if (!wisdom) {
-            console.warn(`Unknown wisdom id: ${wisdomId}`);
-            return null;
-          }
-
-          return (
-            <div
-              key={wisdomId}
-              className="flex items-center gap-2"
-            >
-              <img
-                src={wisdom.icon}
-                alt={wisdom.displayName[language]}
-                className="h-8 w-8 object-contain"
-              />
-
-              <span className="text-lg text-ink">
-                {wisdom.displayName[language]}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+          {(principle.amount ?? 1) > 1 && (
+            <span className="text-base text-ink">
+              {principle.amount}
+            </span>
+          )}
+        </div>
+      ))}
     </div>
+  ) : (
+    <p className="mt-2 text-sm italic text-ink/40">
+      {t.none}
+    </p>
   )}
 </section>
 
@@ -310,7 +224,7 @@ return (
     <span className="min-w-0 text-base leading-snug text-ink">
       {sourceObject.displayName[language]}
       {source.notConsumed && (
-    <span className="mt-1 inline-block whitespace-nowrap rounded border border-ink/20 px-1.5 py-0.5 text-xs text-ink/60">
+    <span className="ml-2 rounded border border-ink/20 px-1.5 py-0.5 text-xs text-ink/60">
       {language === "en" ? "NOT CONSUMED" : "不消耗"}
     </span>
   )}
@@ -355,7 +269,7 @@ return (
       <img
         src={sourceObject.icon}
         alt=""
-        className="h-12 w-12 shrink-0 object-contain"
+        className="h-9 w-9 shrink-0 object-contain"
       />
 
       <span className="min-w-0 text-base leading-snug text-ink">
@@ -400,6 +314,7 @@ return (
   language={language}
   title={t.crafting}
   methodCount={methods.length}
+  compact
 
   previewCraftableId={previewCraftableId}
   onOpenPreview={(craftableId) => {
@@ -419,30 +334,9 @@ return (
 />
             ))}
           </section>
-{previewMemory && (
-  <aside ref={childPreviewRef}
-  className="md:sticky md:top-6 md:w-[420px] md:shrink-0 md:border-l md:border-ink/20 md:pl-6">
-    <div className="flex justify-end">
-      <button
-        type="button"
-        onClick={() => setPreviewMemoryId(null)}
-        className="text-2xl leading-none text-ink/50 hover:text-ink"
-        aria-label="Close"
-      >
-        ×
-      </button>
-    </div>
 
-    <MemoryChildPreview
-      memory={previewMemory}
-      language={language}
-    />
-  </aside>
-)}
           {previewCraftable && (
-            <aside 
-            ref={childPreviewRef}
-            className="md:sticky md:top-6 md:w-[420px] md:shrink-0 md:border-l md:border-ink/20 md:pl-6">
+            <aside className="md:sticky md:top-6 md:w-[420px] md:shrink-0 md:border-l md:border-ink/20 md:pl-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-2xl text-ink">
                   {previewCraftable.displayName[language]}
@@ -466,6 +360,7 @@ return (
                       method={method}
                       index={index}
                       language={language}
+                      methodCount={previewCraftable.methods.length}
                       compact
                     />
                   )
@@ -476,20 +371,6 @@ return (
         </div>
       )}
       </div>
-      )}
-
-      {/* Note */}
-      {memory.note && (
-        <section className="mt-6">
-          {memory.note[language].map((line, index) => (
-            <p
-              key={index}
-              className="text-base italic leading-relaxed text-ink/60"
-            >
-              {line}
-            </p>
-          ))}
-        </section>
       )}
     </article>
   );
