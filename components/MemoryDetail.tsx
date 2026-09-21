@@ -304,7 +304,7 @@ return (
     <img
       src={sourceObject.icon}
       alt=""
-      className="h-12 w-12 shrink-0 object-contain"
+      className="h-12 w-12 shrink-0 object-contain drop-shadow-[0_1px_1px_rgba(40,35,30,0.45)]"
     />
 
     <span className="min-w-0 text-base leading-snug text-ink">

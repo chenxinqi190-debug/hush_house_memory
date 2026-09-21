@@ -85,7 +85,7 @@ export const translations = {
     crafting: "制作方法",
     memories: "回忆",
     bookSources: "阅读获得",
-    sources: "交互获得",
+    sources: "互动获得",
     possible: "Possible",
     evolveVia: "进阶",
     consider: "研究",

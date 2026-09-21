@@ -27,7 +27,7 @@ body {
  * transparent background).
  */
 .bg-parchment {
-background-image: url('/textures/blue.jpg');
+background-image: url('/textures/grey.jpg');
 background-repeat: repeat;
 background-size: 1600px auto;
 }
