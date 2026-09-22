@@ -70,7 +70,7 @@ export default function MemorySidebar({
         <p className="mt-6 text-base leading-5 text-ink/80">
    {language === "en" ? "Part of the " : "属于"}
   <a
-    href={`https://你的-handbook-网址/?lang=${language}`}
+    href={`https://hush-house-handbook.pages.dev/?lang=${language}`}
     className="underline underline-offset-2 transition-colors hover:text-ink/75"
   >
     {language === "en"
