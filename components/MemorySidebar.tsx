@@ -66,6 +66,19 @@ export default function MemorySidebar({
         <h1 className="text-4xl tracking-[0.1em] text-ink md:text-5xl">
           {t.archiveTitle}
         </h1>
+
+        <p className="mt-6 text-base leading-5 text-ink/80">
+   {language === "en" ? "Part of the " : "属于"}
+  <a
+    href={`https://你的-handbook-网址/?lang=${language}`}
+    className="underline underline-offset-2 transition-colors hover:text-ink/75"
+  >
+    {language === "en"
+      ? "LIBRARIAN'S HANDBOOK"
+      : "《图书管理员手册》"}
+  </a>
+</p>
+
       </div>
 
       <SearchBar

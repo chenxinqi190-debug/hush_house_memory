@@ -26,20 +26,33 @@ export default function Home() {
   useEffect(() => {
   setIsMounted(true);
 
+ const params = new URLSearchParams(window.location.search);
+  const urlLanguage = params.get("lang");
+
   const savedLanguage = localStorage.getItem("language") as Language | null;
   const savedMemoryId = localStorage.getItem("selectedMemoryId");
   const savedSearchQuery = localStorage.getItem("searchQuery");
   const savedPrincipleId = localStorage.getItem("selectedPrincipleId");
 
-  if (savedLanguage === "en" || savedLanguage === "zh") setLanguage(savedLanguage);
+  if (urlLanguage === "en" || urlLanguage === "zh") {
+    setLanguage(urlLanguage);
+  } else if (savedLanguage === "en" || savedLanguage === "zh") {
+    setLanguage(savedLanguage);
+  }
+
   if (savedMemoryId) setSelectedMemoryId(savedMemoryId);
   if (savedSearchQuery) setSearchQuery(savedSearchQuery);
   if (savedPrincipleId) setSelectedPrincipleId(savedPrincipleId);
 }, []);
 
   useEffect(() => {
-     if (!isMounted) return;
+  if (!isMounted) return;
+
   localStorage.setItem("language", language);
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", language);
+  window.history.replaceState({}, "", url);
 }, [language, isMounted]);
 
   useEffect(() => {
@@ -140,13 +153,6 @@ if (!isMounted) {
         </div>
         <div className="flex items-center justify-end gap-3 px-8 pt-4">
   <LanguageSwitcher language={language} onChange={setLanguage} />
-
-  <Link
-    href="/about"
-    className="text-lg text-in/80 transition-colors hover:text-ink"
-  >
-    {t.about}
-  </Link>
 </div>
 
         <MemoryDetail memory={selectedMemory} language={language} />

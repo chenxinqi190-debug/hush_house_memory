@@ -522,7 +522,12 @@ export const memories: Memory[] = [
     id: "tanglebrag",
     sourceType: "craftable",
     action: "consider",
-  }],
+  },
+{
+    text: {en:"* Can also be obtained by discarding a Penny at Sea's Edge", zh:"* 亦可以在海边抛弃一枚便士获得。"},
+    sourceType: "text",
+    action: "activity",
+  },],
     type: "temporary",
     icon: "/memories/memory_impulse.png",
   },
@@ -785,7 +790,7 @@ export const memories: Memory[] = [
     action: "consider",
   },
   {
-    text: {en: "* Can also be obtained by renouncing a Penny at the Hush House Well.", zh: "* 也可通过在水井处抛弃一枚便士获得。"},
+    text: {en: "* Can also be obtained by discarding a Penny at the Hush House Well.", zh: "* 也可通过在水井处抛弃一枚便士获得。"},
     sourceType: "text",
     action: "activity",
   }
@@ -1757,7 +1762,8 @@ action: "consider"
     ],
     sources:[{id: "gervinite", sourceType: "craftable", action: "consider"},
       {id: "walls_of_ys", sourceType: "craftable", action: "consider"},
-      {id: "stymphling", sourceType: "animal", action: "conversation"}],
+      {id: "stymphling", sourceType: "animal", action: "conversation"},
+    {text: {en: "* Can be obtained by renouncing a Penny at the Sea's Edge during Numa.", zh: "* 于闰时在海边抛弃一枚便士，可获得此回忆。"}, sourceType: "text", action: "activity"}],
     evolveVia: ["hushery"],
     icon: "/memories/horizon_sight.png",
   },
